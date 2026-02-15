@@ -1,0 +1,533 @@
+/* 首页专属样式 - 清新简约设计 */
+
+/* 欢迎区 */
+.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    animation: slideUp 0.5s ease;
+}
+
+.welcome-text {
+    flex: 1;
+}
+
+.welcome-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+}
+
+.welcome-subtitle {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+}
+
+.daily-streak {
+    background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
+    border-radius: 20px;
+    padding: 12px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.1);
+}
+
+.streak-number {
+    font-size: 28px;
+    font-weight: 900;
+    color: #FF9800;
+    line-height: 1;
+}
+
+.streak-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #FF9800;
+    margin-top: 2px;
+}
+
+/* 今日进度卡片 */
+.today-progress {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+    animation: slideUp 0.6s ease;
+}
+
+.today-progress:active {
+    transform: scale(0.98);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.progress-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1976D2;
+}
+
+.progress-count {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0D47A1;
+}
+
+.progress-percent {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1565C0;
+}
+
+.progress-bar-container {
+    margin-bottom: 16px;
+}
+
+.progress-bar-bg {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #42A5F5 0%, #1E88E5 100%);
+    border-radius: 6px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-footer {
+    display: flex;
+    gap: 20px;
+}
+
+.progress-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1565C0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.progress-stat i {
+    width: 16px;
+    height: 16px;
+}
+
+/* 学习数据概览 */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+    animation: slideUp 0.7s ease;
+}
+
+.stat-item-new {
+    background: var(--bg-primary);
+    border-radius: 20px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.stat-item-new:active {
+    transform: scale(0.95);
+}
+
+.stat-icon-new {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-item-new.mastered .stat-icon-new {
+    background: #E8F5E9;
+    color: #4CAF50;
+}
+
+.stat-item-new.learning .stat-icon-new {
+    background: #FFF3E0;
+    color: #FF9800;
+}
+
+.stat-item-new.accuracy .stat-icon-new {
+    background: #FCE4EC;
+    color: #E91E63;
+}
+
+.stat-icon-new i {
+    width: 24px;
+    height: 24px;
+}
+
+.stat-content-new {
+    text-align: center;
+}
+
+.stat-value-new {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.stat-label-new {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+}
+
+/* 大按钮操作 */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    animation: slideUp 0.8s ease;
+}
+
+.action-btn-large {
+    background: var(--bg-primary);
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: var(--shadow-sm);
+}
+
+.action-btn-large:active {
+    transform: scale(0.98);
+}
+
+.action-btn-large.primary {
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+}
+
+.action-btn-large.secondary {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+}
+
+.action-btn-icon {
+    width: 56px;
+    height: 56px;
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.action-btn-large.primary .action-btn-icon {
+    color: #4CAF50;
+}
+
+.action-btn-large.secondary .action-btn-icon {
+    color: #FF9800;
+}
+
+.action-btn-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.action-btn-text {
+    flex: 1;
+    text-align: left;
+}
+
+.action-btn-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.action-btn-subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+}
+
+.action-btn-arrow {
+    width: 24px;
+    height: 24px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+/* 更多功能 */
+.more-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+    animation: slideUp 0.9s ease;
+}
+
+.more-action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.more-action-item:active {
+    transform: scale(0.9);
+}
+
+.more-action-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.more-action-icon.review {
+    background: #E3F2FD;
+    color: #2196F3;
+}
+
+.more-action-icon.wrong {
+    background: #FCE4EC;
+    color: #E91E63;
+}
+
+.more-action-icon.library {
+    background: #F3E5F5;
+    color: #9C27B0;
+}
+
+.more-action-icon.stats {
+    background: #FFF3E0;
+    color: #FF9800;
+}
+
+.more-action-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.more-action-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #FF2D55;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.more-action-item > span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* 学习趋势 */
+.trend-card {
+    background: var(--bg-primary);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 100px;
+    box-shadow: var(--shadow-sm);
+    animation: slideUp 1s ease;
+}
+
+.trend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.trend-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.trend-total {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+}
+
+.trend-chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 120px;
+    gap: 8px;
+}
+
+.trend-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.trend-bar-fill {
+    width: 100%;
+    background: #E3F2FD;
+    border-radius: 8px 8px 4px 4px;
+    height: 100%;
+    transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trend-bar.active .trend-bar-fill {
+    background: linear-gradient(180deg, #64B5F6 0%, #42A5F5 100%);
+}
+
+.trend-day {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+}
+
+.trend-bar.active .trend-day {
+    color: var(--text-primary);
+    font-weight: 800;
+}
+
+/* AI悬浮按钮 */
+.ai-fab {
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
+    border: none;
+    border-radius: 50%;
+    color: #5C6BC0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(92, 107, 192, 0.25);
+    transition: all 0.3s;
+    z-index: 100;
+    animation: fadeIn 1s ease;
+}
+
+.ai-fab:active {
+    transform: scale(0.9);
+}
+
+.ai-fab i {
+    width: 26px;
+    height: 26px;
+}
+
+/* 悬浮按钮脉冲动画 */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(92, 107, 192, 0.25);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(92, 107, 192, 0.35);
+    }
+}
+
+.ai-fab {
+    animation: fadeIn 1s ease, pulse 2s ease-in-out infinite;
+}
+
+/* 夜间模式适配 */
+body.night-mode .stat-item-new {
+    background: var(--bg-tertiary);
+}
+
+body.night-mode .action-btn-large {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .trend-card {
+    background: var(--bg-tertiary);
+}
+
+body.night-mode .stat-item-new.mastered .stat-icon-new {
+    background: rgba(76, 175, 80, 0.15);
+}
+
+body.night-mode .stat-item-new.learning .stat-icon-new {
+    background: rgba(255, 152, 0, 0.15);
+}
+
+body.night-mode .stat-item-new.accuracy .stat-icon-new {
+    background: rgba(233, 30, 99, 0.15);
+}
+
+body.night-mode .action-btn-large.primary {
+    background: rgba(76, 175, 80, 0.15);
+}
+
+body.night-mode .action-btn-large.secondary {
+    background: rgba(255, 152, 0, 0.15);
+}
+
+body.night-mode .more-action-icon.review {
+    background: rgba(33, 150, 243, 0.15);
+}
+
+body.night-mode .more-action-icon.wrong {
+    background: rgba(233, 30, 99, 0.15);
+}
+
+body.night-mode .more-action-icon.library {
+    background: rgba(156, 39, 176, 0.15);
+}
+
+body.night-mode .more-action-icon.stats {
+    background: rgba(255, 152, 0, 0.15);
+}
+
+body.night-mode .ai-fab {
+    background: rgba(92, 107, 192, 0.2);
+}

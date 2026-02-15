@@ -1,0 +1,31 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{title}}" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="stats-row">
+      <view class="stat-card stat-card--red">
+        <text class="stat-label">待复习</text>
+        <text class="stat-value">{{pendingCount}}</text>
+      </view>
+      <view class="stat-card stat-card--white">
+        <text class="stat-label">已掌握</text>
+        <text class="stat-value stat-value--green">{{masteredCount}}</text>
+      </view>
+    </view>
+    <view class="mistake-list">
+      <view wx:for="{{mistakes}}" wx:key="word" class="mistake-item">
+        <view>
+          <text class="mistake-word">{{item.word}}</text>
+          <text class="mistake-mean">{{item.mean}}</text>
+        </view>
+        <view class="mistake-actions">
+          <view class="mistake-badge">错 {{item.count}} 次</view>
+          <view class="mistake-btn"><t-icon name="check-circle" size="36rpx" /></view>
+        </view>
+      </view>
+    </view>
+    <view class="start-btn" bindtap="onStartReview">
+      <t-icon name="books" size="40rpx" />
+      <text>开始复习</text>
+    </view>
+  </view>
+</view>

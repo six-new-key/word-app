@@ -1,0 +1,110 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="我的好友" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="page-head-row">
+      <view class="search-bar">
+      <t-icon name="search" size="36rpx" />
+      <input class="search-input" placeholder="搜索好友账号/昵称" value="{{query}}" bindinput="onSearchInput" />
+      <t-icon wx:if="{{query}}" name="close" size="32rpx" bindtap="onClearSearch" />
+      </view>
+      <view class="add-friend-btn" bindtap="onAddTap">添加</view>
+    </view>
+
+    <view class="online-card">
+      <view class="online-head">
+        <text class="online-label">在线</text>
+        <text class="online-count">{{onlineCount}} 人在线</text>
+      </view>
+      <view class="online-sub">{{friends.length}} 位好友</view>
+      <scroll-view scroll-x class="online-scroll" enhanced show-scrollbar="{{false}}">
+        <view wx:for="{{onlineFriends}}" wx:key="id" class="online-avatar-wrap" data-id="{{item.id}}" bindtap="onFriendTap">
+          <view class="friend-avatar friend-avatar--sm">{{item.name.charAt(0)}}</view>
+          <view wx:if="{{item.isOnline}}" class="online-dot" />
+          <text class="online-name">{{item.name}}</text>
+        </view>
+        <view wx:if="{{onlineFriends.length === 0}}" class="online-empty">暂无在线好友</view>
+      </scroll-view>
+    </view>
+
+    <view class="friend-list">
+      <view wx:for="{{filteredFriends}}" wx:key="id" class="friend-card" data-id="{{item.id}}" bindtap="onFriendTap">
+        <view class="friend-card-left">
+          <view class="friend-avatar">{{item.name.charAt(0)}}</view>
+          <view wx:if="{{item.isOnline}}" class="online-dot online-dot--lg" />
+          <view class="friend-info">
+            <view class="friend-name-row">
+              <text class="friend-name">{{item.name}}</text>
+              <text class="friend-level">Lv.{{item.level}}</text>
+            </view>
+            <view class="friend-streak">连续 {{item.streak}} 天</view>
+            <view class="friend-progress-wrap">
+              <view class="friend-progress-bar"><view class="friend-progress-fill" style="width: {{item.progress * 100}}%" /></view>
+              <text class="friend-progress-pct">{{item.progress * 100}}%</text>
+            </view>
+          </view>
+        </view>
+        <view class="friend-actions">
+          <view class="friend-action-btn" data-id="{{item.id}}" catchtap="onAssistTap"><t-icon name="refresh" size="28rpx" /></view>
+          <view class="friend-action-btn friend-action-btn--chat" data-id="{{item.id}}" catchtap="onChatTap"><t-icon name="chat" size="28rpx" /></view>
+        </view>
+      </view>
+      <view wx:if="{{filteredFriends.length === 0}}" class="empty-tip">
+        <text class="empty-title">没有匹配的好友</text>
+        <text class="empty-desc">换个关键词试试，或点击右上角添加。</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加好友弹窗 -->
+  <view wx:if="{{addOpen}}" class="mask" bindtap="onCloseAdd">
+    <view class="sheet sheet--center" catchtap="">
+      <view class="sheet-title">添加好友</view>
+      <input class="sheet-input" placeholder="例如：Momo" value="{{addName}}" bindinput="onAddNameInput" />
+      <view class="sheet-actions">
+        <view class="sheet-btn" bindtap="onCloseAdd">取消</view>
+        <view class="sheet-btn sheet-btn--primary" bindtap="onAddConfirm">添加</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 好友资料/聊天 弹窗 -->
+  <view wx:if="{{sheetOpen}}" class="mask" bindtap="onCloseSheet">
+    <view class="sheet" catchtap="">
+      <view class="sheet-title">{{sheetMode === 'profile' ? '好友资料' : '聊天'}}</view>
+      <block wx:if="{{sheetMode === 'profile' && activeFriend}}">
+        <view class="profile-body">
+          <view class="profile-head">
+            <view class="friend-avatar friend-avatar--xl">{{activeFriend.name.charAt(0)}}</view>
+            <view wx:if="{{activeFriend.isOnline}}" class="online-dot online-dot--xl" />
+            <view class="profile-meta">
+              <text class="friend-name">{{activeFriend.name}}</text>
+              <text class="friend-level">Lv.{{activeFriend.level}}</text>
+              <text class="profile-extra">连续 {{activeFriend.streak}} 天 · 今日进度 {{activeFriend.progress * 100}}%</text>
+            </view>
+          </view>
+          <view class="friend-progress-bar"><view class="friend-progress-fill" style="width: {{activeFriend.progress * 100}}%" /></view>
+          <view class="profile-actions">
+            <view class="profile-btn profile-btn--outline" bindtap="onAssistTap">互助复习</view>
+            <view class="profile-btn profile-btn--primary" bindtap="onOpenChat">发消息</view>
+          </view>
+          <view class="profile-btn profile-btn--danger" bindtap="onRemoveFriend">移除好友</view>
+        </view>
+      </block>
+      <block wx:if="{{sheetMode === 'chat' && activeFriend}}">
+        <view class="chat-body">
+          <view class="chat-title">与 {{activeFriend.name}} 的对话</view>
+          <scroll-view scroll-y class="chat-messages" scroll-into-view="{{chatScrollId}}">
+            <view wx:for="{{activeMessages}}" wx:key="id" id="msg-{{item.id}}" class="chat-msg {{item.from === 'me' ? 'chat-msg--me' : ''}}">{{item.text}}</view>
+            <view wx:if="{{activeMessages.length === 0}}" class="chat-empty">还没有消息，发一句试试。</view>
+          </scroll-view>
+          <view class="chat-input-wrap">
+            <textarea class="chat-input" placeholder="输入消息…" value="{{chatText}}" bindinput="onChatInput" bindconfirm="onSendMsg" />
+            <view class="chat-send" bindtap="onSendMsg"><t-icon name="send" size="36rpx" /></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view wx:if="{{toast}}" class="toast">{{toast}}</view>
+</view>

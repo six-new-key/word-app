@@ -1,0 +1,70 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{title}}" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="section">
+      <view class="section-head">
+        <view class="dot"></view>
+        <text class="section-title">数据概览</text>
+      </view>
+      <view class="data-grid">
+        <view class="data-card">
+          <view class="data-icon data-icon--primary"><t-icon name="root-list" size="48rpx" /></view>
+          <text class="data-value">2,450</text>
+          <text class="data-label">累计词汇</text>
+        </view>
+        <view class="data-card">
+          <view class="data-icon data-icon--green"><t-icon name="check-circle" size="48rpx" /></view>
+          <text class="data-value">1,204</text>
+          <text class="data-label">已掌握</text>
+        </view>
+        <view class="data-card">
+          <view class="data-icon data-icon--accent"><t-icon name="time" size="48rpx" /></view>
+          <text class="data-value">45h</text>
+          <text class="data-label">学习时长</text>
+        </view>
+        <view class="data-card">
+          <view class="data-icon data-icon--purple"><t-icon name="chart" size="48rpx" /></view>
+          <text class="data-value">92%</text>
+          <text class="data-label">正确率</text>
+        </view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="section-head">
+        <view class="dot dot--purple"></view>
+        <text class="section-title">本周趋势</text>
+      </view>
+      <view class="trend-card">
+        <view class="trend-bars">
+          <view wx:for="{{trendData}}" wx:key="index" class="trend-bar-wrap {{index === 6 ? 'trend-bar-wrap--highlight' : ''}}">
+            <view class="trend-bar" style="height:{{item}}%;"></view>
+          </view>
+        </view>
+        <view class="trend-labels"><text>一</text><text>二</text><text>三</text><text>四</text><text>五</text><text>六</text><text>日</text></view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="section-head">
+        <view class="dot dot--accent"></view>
+        <text class="section-title">掌握程度</text>
+      </view>
+      <view class="mastery-card">
+        <view class="mastery-ring-wrap">
+          <view class="mastery-ring">
+            <text class="mastery-value">45%</text>
+          </view>
+        </view>
+        <view class="mastery-legend">
+          <view class="legend-item"><view class="legend-dot legend-dot--green"></view><text>已掌握 45%</text></view>
+          <view class="legend-item"><view class="legend-dot legend-dot--primary"></view><text>复习中 25%</text></view>
+          <view class="legend-item"><view class="legend-dot legend-dot--accent"></view><text>学习中 15%</text></view>
+          <view class="legend-item"><view class="legend-dot legend-dot--gray"></view><text>新词 15%</text></view>
+        </view>
+      </view>
+    </view>
+    <view class="ai-insight">
+      <view class="ai-header"><view class="ai-badge">AI</view><text>学习建议</text></view>
+      <text class="ai-text">基于您的艾宾浩斯遗忘曲线，建议今天重点关注 四级核心词汇 中的薄弱单词（30个）。您的拼写正确率正在稳步提升！</text>
+    </view>
+  </view>
+</view>

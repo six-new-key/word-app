@@ -1,0 +1,17 @@
+<view class="shell theme-{{theme}}">
+  <view class="shell__content">
+    <view class="tab-pane {{currentTab === 'home' ? 'tab-pane--active' : 'tab-pane--inactive'}}">
+      <home-content payload="{{tabPayload}}" bind:navigate="onNavigate" bind:tabchange="onTabChange" bind:themechange="onThemeChange" />
+    </view>
+    <view class="tab-pane {{currentTab === 'learning' ? 'tab-pane--active' : 'tab-pane--inactive'}}">
+      <learning-content payload="{{tabPayload}}" theme="{{theme}}" bind:navigate="onNavigate" bind:tabchange="onTabChange" />
+    </view>
+    <view class="tab-pane {{currentTab === 'vocabulary' ? 'tab-pane--active' : 'tab-pane--inactive'}}">
+      <vocabulary-content payload="{{tabPayload}}" theme="{{theme}}" bind:navigate="onNavigate" bind:tabchange="onTabChange" />
+    </view>
+    <view class="tab-pane {{currentTab === 'mine' ? 'tab-pane--active' : 'tab-pane--inactive'}}">
+      <mine-content payload="{{tabPayload}}" theme="{{theme}}" bind:themechange="onThemeChange" bind:navigate="onNavigate" bind:tabchange="onTabChange" />
+    </view>
+  </view>
+  <tabbar activeTab="{{currentTab}}" list="{{tabList}}" theme="{{theme}}" bind:tabchange="onTabChange" />
+</view>

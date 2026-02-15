@@ -1,0 +1,145 @@
+/**
+ * 主题变量：.theme-light / .theme-dark
+ * 由 theme/schemes/blue.js 映射生成，覆盖 TDesign 并注入 --app-*
+ * page 作为根时也需要有默认变量，子页面未包裹 theme 类时使用
+ */
+
+page {
+  --app-bg-page: #ebe8e4;
+  --app-bg-page-gradient: linear-gradient(180deg, #e5e1dc 0%, #ebe8e4 35%, #eae6e2 70%, #ebe8e4 100%);
+  --app-glass-bg: rgba(255, 255, 255, 0.42);
+  --app-glass-border: rgba(255, 255, 255, 0.58);
+  --app-glass-blur: blur(120rpx) saturate(180%);
+  --app-text-primary: #333333;
+  --app-text-secondary: #5c5c5c;
+  --app-text-on-primary: #ffffff;
+  --app-accent-warm: #f5a623;
+  --app-accent-warm-muted: #b8860b;
+  --app-danger: #ef4444;
+  --app-danger-bg: rgba(239, 68, 68, 0.08);
+  --app-danger-border: rgba(239, 68, 68, 0.3);
+  --app-success: #27ae60;
+}
+
+/* ========== 明亮主题（蓝色方案） ========== */
+.theme-light {
+  --app-bg-page: #ebe8e4;
+  --app-bg-page-gradient: linear-gradient(180deg, #e5e1dc 0%, #ebe8e4 35%, #eae6e2 70%, #ebe8e4 100%);
+  --app-glass-bg: rgba(255, 255, 255, 0.42);
+  --app-glass-border: rgba(255, 255, 255, 0.58);
+  --app-glass-blur: blur(120rpx) saturate(180%);
+  --app-text-primary: #333333;
+  --app-text-secondary: #5c5c5c;
+  --app-primary: #3F51B5;
+  --app-primary-light: #757de8;
+  --app-primary-lighter: #dedeff;
+  --app-accent: #2196F3;
+  --app-text-on-primary: #ffffff;
+  --app-accent-warm: #f5a623;
+  --app-accent-warm-muted: #b8860b;
+  --app-danger: #ef4444;
+  --app-danger-bg: rgba(239, 68, 68, 0.08);
+  --app-danger-border: rgba(239, 68, 68, 0.3);
+  --app-success: #27ae60;
+  --td-brand-color: #3F51B5;
+  --td-brand-color-1: #dedeff;
+  --td-brand-color-2: #c5c8ff;
+  --td-brand-color-3: #a8adff;
+  --td-brand-color-4: #8b92ff;
+  --td-brand-color-5: #757de8;
+  --td-brand-color-6: #5c6bc0;
+  --td-brand-color-7: #3F51B5;
+  --td-brand-color-8: #303f9f;
+  --td-brand-color-9: #1a237e;
+  --td-brand-color-10: #0d1452;
+  --td-primary-color-1: #dedeff;
+  --td-primary-color-2: #c5c8ff;
+  --td-primary-color-3: #a8adff;
+  --td-primary-color-4: #8b92ff;
+  --td-primary-color-5: #757de8;
+  --td-primary-color-6: #5c6bc0;
+  --td-primary-color-7: #3F51B5;
+  --td-primary-color-8: #303f9f;
+  --td-primary-color-9: #1a237e;
+  --td-primary-color-10: #0d1452;
+  --td-bg-color-page: #ebe8e4;
+  --td-bg-color-container: #FFFFFF;
+  --td-bg-color-secondarycontainer: #f5f5f5;
+  --td-text-color-primary: rgba(0,0,0,0.9);
+  --td-text-color-secondary: rgba(0,0,0,0.6);
+  --td-text-color-placeholder: rgba(0,0,0,0.4);
+  --td-font-gray-1: rgba(0,0,0,0.9);
+  --td-font-gray-2: rgba(0,0,0,0.6);
+  --td-font-gray-3: rgba(0,0,0,0.4);
+  --td-font-gray-4: rgba(0,0,0,0.26);
+  --td-gray-color-1: #f3f3f3;
+  --td-gray-color-2: #eeeeee;
+  --td-gray-color-3: #e7e7e7;
+  --td-gray-color-4: #dcdcdc;
+  --td-component-border: #dcdcdc;
+  --td-component-stroke: #e7e7e7;
+}
+
+/* ========== 暗黑主题（蓝色方案） ========== */
+.theme-dark {
+  --app-bg-page: #121212;
+  --app-bg-page-gradient: linear-gradient(180deg, #0f0f0f 0%, #121212 40%, #141414 70%, #121212 100%);
+  --app-glass-bg: rgba(30, 30, 30, 0.72);
+  --app-glass-border: rgba(255, 255, 255, 0.1);
+  --app-glass-blur: blur(120rpx) saturate(180%);
+  --app-text-primary: #FFFFFF;
+  --app-text-secondary: #9e9e9e;
+  --app-primary: #0085ff;
+  --app-primary-light: #69b4ff;
+  --app-primary-lighter: #e0ffff;
+  --app-accent: #006fff;
+  --app-text-on-primary: #ffffff;
+  --app-accent-warm: #f5a623;
+  --app-accent-warm-muted: #d4a017;
+  --app-danger: #f87171;
+  --app-danger-bg: rgba(248, 113, 113, 0.12);
+  --app-danger-border: rgba(248, 113, 113, 0.35);
+  --app-success: #34d399;
+  --td-brand-color: #69b4ff;
+  --td-brand-color-1: #001a33;
+  --td-brand-color-2: #002d4d;
+  --td-brand-color-3: #003d66;
+  --td-brand-color-4: #004d80;
+  --td-brand-color-5: #0066a6;
+  --td-brand-color-6: #0085ff;
+  --td-brand-color-7: #69b4ff;
+  --td-brand-color-8: #99c9ff;
+  --td-brand-color-9: #c2e0ff;
+  --td-brand-color-10: #e0ffff;
+  --td-primary-color-1: #001a33;
+  --td-primary-color-2: #002d4d;
+  --td-primary-color-3: #003d66;
+  --td-primary-color-4: #004d80;
+  --td-primary-color-5: #0066a6;
+  --td-primary-color-6: #0085ff;
+  --td-primary-color-7: #69b4ff;
+  --td-primary-color-8: #99c9ff;
+  --td-primary-color-9: #c2e0ff;
+  --td-primary-color-10: #e0ffff;
+  --td-bg-color-page: #1E1E1E;
+  --td-bg-color-container: #2d2d2d;
+  --td-bg-color-secondarycontainer: #2d2d2d;
+  --td-bg-color-container-active: #454545;
+  --td-bg-color-secondarycontainer-active: #454545;
+  --td-bg-color-component: #454545;
+  --td-text-color-primary: rgba(255,255,255,0.9);
+  --td-text-color-secondary: rgba(255,255,255,0.55);
+  --td-text-color-placeholder: rgba(255,255,255,0.35);
+  --td-font-white-1: rgba(255,255,255,0.9);
+  --td-font-white-2: rgba(255,255,255,0.55);
+  --td-font-white-3: rgba(255,255,255,0.35);
+  --td-font-white-4: rgba(255,255,255,0.22);
+  --td-gray-color-11: #383838;
+  --td-gray-color-12: #2c2c2c;
+  --td-gray-color-13: #242424;
+  --td-gray-color-14: #181818;
+  --td-component-border: #5e5e5e;
+  --td-component-stroke: #383838;
+  --td-border-level-1-color: #383838;
+  --td-border-level-2-color: #5e5e5e;
+}

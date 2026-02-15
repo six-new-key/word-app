@@ -1,0 +1,16 @@
+@import 'miniprogram_npm/tdesign-miniprogram/common/style/theme/_index.wxss';
+@import '/theme/variables.wxss';
+
+/* 默认明亮，子节点 .theme-* 覆盖；渐变背景突出毛玻璃效果 */
+page {
+  background: var(--app-bg-page-gradient, var(--app-bg-page, #ebe8e4));
+  min-height: 100vh;
+}
+
+/* 毛玻璃卡片通用类（与 tabbar 一致） */
+.app-glass {
+  background: var(--app-glass-bg);
+  backdrop-filter: var(--app-glass-blur);
+  -webkit-backdrop-filter: var(--app-glass-blur);
+  border: 1rpx solid var(--app-glass-border);
+}

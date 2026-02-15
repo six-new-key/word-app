@@ -1,0 +1,32 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{title}}" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="setting-group">
+      <view class="setting-group-title"><t-icon name="bulb" size="32rpx" /> 学习偏好</view>
+      <view class="setting-row"><text>字体大小</text><text class="value">标准</text><t-icon name="chevron-right" size="28rpx" /></view>
+      <view class="setting-row"><text>默认模式</text><text class="value">看词选义</text><t-icon name="chevron-right" size="28rpx" /></view>
+      <view class="setting-row"><text>每日学习量</text><text class="value">50 词</text><t-icon name="chevron-right" size="28rpx" /></view>
+    </view>
+    <view class="setting-group">
+      <view class="setting-group-title"><t-icon name="notification" size="32rpx" /> 通知与提醒</view>
+      <view class="setting-row"><text>每日提醒</text><t-switch value="{{true}}" /></view>
+      <view class="setting-row"><text>提醒时间</text><text class="value">20:00</text><t-icon name="chevron-right" size="28rpx" /></view>
+    </view>
+    <view class="setting-group">
+      <view class="setting-group-title"><t-icon name="sound" size="32rpx" /> AI 助手</view>
+      <view class="setting-row"><text>启用 AI 辅助</text><t-switch value="{{true}}" /></view>
+      <view class="setting-row"><text>AI 发音纠错</text><t-switch value="{{true}}" /></view>
+      <view class="setting-row"><text>AI 性格</text><text class="value">温柔鼓励型</text><t-icon name="chevron-right" size="28rpx" /></view>
+    </view>
+    <view class="setting-group">
+      <view class="setting-group-title"><t-icon name="refresh" size="32rpx" /> 外观</view>
+      <view class="setting-row"><text>深色模式</text><text class="value">跟随系统</text><t-icon name="chevron-right" size="28rpx" /></view>
+    </view>
+    <view class="logout-btn" bindtap="onLogout">退出登录</view>
+    <view class="version-block">
+      <view class="version-logo"><view class="version-logo-inner" /></view>
+      <text class="version-text">Word App v1.2.0</text>
+      <text class="version-build">Build 20240520</text>
+    </view>
+  </view>
+</view>

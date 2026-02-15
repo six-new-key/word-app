@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 设置</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="settings.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <button class="icon-btn" onclick="history.back()">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <h1 class="page-title">设置</h1>
+            <div style="width: 36px;"></div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 学习设置 -->
+            <div class="settings-section">
+                <div class="section-title">学习设置</div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <span>每日目标</span>
+                        <select class="setting-select">
+                            <option>10词</option>
+                            <option selected>20词</option>
+                            <option>30词</option>
+                            <option>50词</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span>学习模式</span>
+                        <select class="setting-select">
+                            <option selected>标准模式</option>
+                            <option>快速模式</option>
+                            <option>深度模式</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span>自动播放发音</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提醒设置 -->
+            <div class="settings-section">
+                <div class="section-title">提醒设置</div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <span>学习提醒</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <span>提醒时间</span>
+                        <input type="time" class="setting-input" value="09:00">
+                    </div>
+                    <div class="setting-item">
+                        <span>复习提醒</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 显示设置 -->
+            <div class="settings-section">
+                <div class="section-title">显示设置</div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <span>夜间模式</span>
+                        <label class="switch">
+                            <input type="checkbox" onchange="toggleNightMode()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <span>字体大小</span>
+                        <select class="setting-select">
+                            <option>小</option>
+                            <option selected>中</option>
+                            <option>大</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI设置 -->
+            <div class="settings-section">
+                <div class="section-title">AI设置</div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <span>AI助手</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <span>AI发音纠正</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <span>智能推荐</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他设置 -->
+            <div class="settings-section">
+                <div class="section-title">其他</div>
+                <div class="settings-list">
+                    <div class="setting-item clickable" onclick="clearCache()">
+                        <span>清理缓存</span>
+                        <div class="setting-value">125 MB</div>
+                    </div>
+                    <div class="setting-item clickable" onclick="checkUpdate()">
+                        <span>检查更新</span>
+                        <div class="setting-value">v1.0.0</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 学习</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="learn.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar learn-nav">
+            <button class="icon-btn" onclick="history.back()">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <div class="learn-progress">
+                <span class="current">5</span> / <span class="total">20</span>
+            </div>
+            <button class="icon-btn" onclick="toggleMenu()">
+                <i data-lucide="more-vertical"></i>
+            </button>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="learn-content">
+            <!-- 单词卡片 - 可滑动 -->
+            <div class="word-card-container">
+                <div class="word-card" id="wordCard">
+                    <div class="word-header">
+                        <button class="sound-btn" onclick="playSound('us')">
+                            <i data-lucide="volume-2"></i>
+                            <span>美</span>
+                        </button>
+                        <button class="bookmark-btn" onclick="toggleBookmark()">
+                            <i data-lucide="bookmark"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="word-main">
+                        <h1 class="word-text" id="wordText">abandon</h1>
+                        <div class="phonetic-group">
+                            <span class="phonetic" id="phoneticUS">US /əˈbændən/</span>
+                            <span class="phonetic" id="phoneticUK">UK /əˈbændən/</span>
+                        </div>
+                    </div>
+
+                    <div class="word-meaning">
+                        <span class="word-type" id="wordType">v.</span>
+                        <span class="meaning-text" id="meaningText">放弃；抛弃；遗弃</span>
+                    </div>
+
+                    <!-- 单词标签 -->
+                    <div class="word-tags">
+                        <span class="tag">CET-4</span>
+                        <span class="tag">高频</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI辅助卡片 -->
+            <div class="ai-card-learn">
+                <div class="ai-header" onclick="toggleAI()">
+                    <div class="ai-title-group">
+                        <i data-lucide="sparkles"></i>
+                        <span>AI智能解析</span>
+                    </div>
+                    <i data-lucide="chevron-down" id="aiChevron"></i>
+                </div>
+                
+                <div class="ai-content" id="aiContent">
+                    <!-- 词根拆解 -->
+                    <div class="ai-section">
+                        <div class="section-title">
+                            <i data-lucide="git-branch"></i>
+                            <span>词根拆解</span>
+                        </div>
+                        <div class="section-content" id="rootContent">
+                            <span class="root">a-</span> (离开) + 
+                            <span class="root">band</span> (约束) + 
+                            <span class="root">-on</span> (动词后缀)
+                        </div>
+                    </div>
+
+                    <!-- 例句 -->
+                    <div class="ai-section">
+                        <div class="section-title">
+                            <i data-lucide="message-square"></i>
+                            <span>例句</span>
+                        </div>
+                        <div class="example-list" id="exampleList">
+                            <div class="example-item">
+                                <p>He had to <span class="highlight">abandon</span> his car in the snow.</p>
+                                <button class="play-btn"><i data-lucide="play"></i></button>
+                            </div>
+                            <div class="example-item">
+                                <p>Don't <span class="highlight">abandon</span> hope.</p>
+                                <button class="play-btn"><i data-lucide="play"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 同义词 -->
+                    <div class="ai-section">
+                        <div class="section-title">
+                            <i data-lucide="shuffle"></i>
+                            <span>同义词</span>
+                        </div>
+                        <div class="synonym-tags" id="synonymTags">
+                            <span class="synonym-tag">desert</span>
+                            <span class="synonym-tag">forsake</span>
+                            <span class="synonym-tag">give up</span>
+                            <span class="synonym-tag">quit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快速操作按钮 -->
+            <div class="quick-actions-learn">
+                <button class="quick-action-btn" onclick="navigateTo('test.html')">
+                    <i data-lucide="brain"></i>
+                    <span>开始测试</span>
+                </button>
+                <button class="quick-action-btn secondary" onclick="previousWord()">
+                    <i data-lucide="chevron-left"></i>
+                    <span>上一个</span>
+                </button>
+                <button class="quick-action-btn secondary" onclick="nextWord()">
+                    <i data-lucide="chevron-right"></i>
+                    <span>下一个</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- 底部Tabbar -->
+        <nav class="tabbar">
+            <a href="index.html" class="tab-item">
+                <i data-lucide="home"></i>
+                <span>首页</span>
+            </a>
+            <a href="learn.html" class="tab-item active">
+                <i data-lucide="book-open"></i>
+                <span>学习</span>
+            </a>
+            <a href="library.html" class="tab-item">
+                <i data-lucide="library"></i>
+                <span>词库</span>
+            </a>
+            <a href="profile.html" class="tab-item">
+                <i data-lucide="user"></i>
+                <span>我的</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="learn.js"></script>
+    <script>
+        lucide.createIcons();
+        
+        // 调试：检查函数是否加载
+        console.log('toggleAI:', typeof toggleAI);
+        console.log('previousWord:', typeof previousWord);
+        console.log('nextWord:', typeof nextWord);
+    </script>
+</body>
+</html>

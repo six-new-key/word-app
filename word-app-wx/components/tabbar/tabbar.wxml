@@ -1,0 +1,47 @@
+<view
+  class="tabbar {{isDark ? 'tabbar--dark' : ''}}"
+  style="padding-left: {{sidePadding}}rpx; padding-right: {{sidePadding}}rpx;"
+  role="tablist"
+  aria-label="底部导航"
+>
+  <view class="tabbar__bar" style="width: calc(100% - {{sidePadding * 2}}rpx);">
+    <view class="tabbar__bar-inner">
+      <view class="tabbar__bar-gradient" />
+      <view class="tabbar__bar-dots" />
+      <view class="tabbar__bar-shine" />
+      <view class="tabbar__bar-shadow" />
+      <block wx:for="{{displayList}}" wx:key="id">
+        <view
+          class="tabbar__item {{activeTab === item.id ? 'tabbar__item--active' : ''}} {{item.disabled ? 'tabbar__item--disabled' : ''}}"
+          data-tab="{{item.id}}"
+          bindtap="onTabTap"
+          hover-class="{{hoverFeedback && !item.disabled ? 'tabbar__item--pressed' : 'none'}}"
+          hover-stay-time="100"
+          role="tab"
+          aria-selected="{{activeTab === item.id}}"
+          aria-label="{{item.label}}{{activeTab === item.id ? '，当前选中' : ''}}"
+          aria-disabled="{{item.disabled}}"
+        >
+          <view wx:if="{{activeTab === item.id}}" class="tabbar__item-pill" />
+          <view class="tabbar__item-content">
+            <view class="tabbar__item-icon-wrap">
+              <image
+                class="tabbar__item-icon {{activeTab === item.id ? 'tabbar__item-icon--active' : 'tabbar__item-icon--inactive'}}"
+                src="{{failedIconIndices[index] && iconFallback ? iconFallback : (activeTab === item.id ? item.selectedIconPath : item.iconPath)}}"
+                mode="aspectFit"
+                data-index="{{index}}"
+                binderror="onIconError"
+              />
+              <view wx:if="{{item.badgeText}}" class="tabbar__badge {{item.badgeText === 'dot' ? 'tabbar__badge--dot' : 'tabbar__badge--num'}}">
+                <text wx:if="{{item.badgeText !== 'dot'}}" class="tabbar__badge-text">{{item.badgeText}}</text>
+              </view>
+            </view>
+            <text
+              class="tabbar__item-label {{activeTab === item.id ? 'tabbar__item-label--hidden' : ''}}"
+            >{{item.label}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

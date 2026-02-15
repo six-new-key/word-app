@@ -1,0 +1,24 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{title}}" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="import-option" bindtap="onCamera">
+      <view class="import-option__icon"><t-icon name="camera" size="48rpx" /></view>
+      <text class="import-option__title">拍照导入</text>
+      <text class="import-option__desc">拍摄课本/笔记，AI自动识别去重</text>
+    </view>
+    <view class="import-option" bindtap="onText">
+      <view class="import-option__icon"><t-icon name="file" size="48rpx" /></view>
+      <text class="import-option__title">文本导入</text>
+      <text class="import-option__desc">支持TXT/Excel格式，批量导入</text>
+    </view>
+    <view class="import-option" bindtap="onLink">
+      <view class="import-option__icon"><t-icon name="link" size="48rpx" /></view>
+      <text class="import-option__title">链接导入</text>
+      <text class="import-option__desc">粘贴词库链接，自动解析同步</text>
+    </view>
+    <view class="import-help" bindtap="onHelp">
+      <t-icon name="help-circle" size="32rpx" />
+      <text>词库导入帮助</text>
+    </view>
+  </view>
+</view>

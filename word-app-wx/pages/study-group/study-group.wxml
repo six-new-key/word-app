@@ -1,0 +1,245 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{view === 'space' ? activeGroup.name : '学习小组'}}" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <!-- list view -->
+    <block wx:if="{{view === 'list'}}">
+      <view class="nav-extra-row">
+        <view class="create-btn" bindtap="onNavCreate">创建小组</view>
+      </view>
+
+      <block wx:if="{{joinedGroups.length > 0}}">
+        <view class="hero-card">
+          <view class="hero-tag">{{activeGroup.tag}}</view>
+          <view class="hero-meta">{{activeGroup.memberCount}}人</view>
+          <view class="hero-name-row">
+            <view class="hero-icon">{{activeGroup.icon}}</view>
+            <text class="hero-name">{{activeGroup.name}}</text>
+          </view>
+          <view class="hero-goal">
+            <view class="hero-goal-head">
+              <text>今日全组目标</text>
+              <text class="hero-goal-num">{{activeGroup.todayGoal}}</text> 词
+            </view>
+            <view class="hero-progress-bar"><view class="hero-progress-fill" style="width: {{activeGroup.todayGoal ? (activeGroup.todayDone / activeGroup.todayGoal * 100) : 0}}%" /></view>
+            <view class="hero-goal-done">已完成 {{activeGroup.todayDone}} 词</view>
+          </view>
+          <view wx:if="{{joinedGroups.length > 1}}" class="hero-chips">
+            <view wx:for="{{joinedGroups}}" wx:key="id" class="hero-chip {{item.id === activeGroupId ? 'hero-chip--active' : ''}}" data-id="{{item.id}}" bindtap="onSetActiveGroup">{{item.name}}</view>
+          </view>
+          <view class="hero-actions">
+            <view class="hero-btn hero-btn--primary" data-id="{{activeGroup.id}}" bindtap="goGroupSpace">进入小组空间</view>
+            <view class="hero-btn hero-btn--outline" bindtap="goDiscover">发现更多</view>
+          </view>
+        </view>
+      </block>
+
+      <view wx:else class="empty-join">
+        <text class="empty-join-title">还没有加入小组</text>
+        <text class="empty-join-desc">加入一个小组，和同伴一起打卡、互助复习、分享进展。</text>
+        <view class="hero-btn hero-btn--primary" bindtap="goDiscover">去发现小组</view>
+      </view>
+
+      <view class="section">
+        <view class="section-head">
+          <text class="section-title">推荐小组</text>
+          <text class="section-link" bindtap="goDiscover">查看全部</text>
+        </view>
+        <view wx:for="{{recommendedGroups}}" wx:key="id" class="group-card">
+          <view class="group-card-main" data-id="{{item.id}}" bindtap="joinGroup">
+            <view class="group-card-icon">{{item.icon}}</view>
+            <view class="group-card-info">
+              <text class="group-card-name">{{item.name}}</text>
+              <text class="group-card-meta">{{item.memberCount}}人 · {{item.tag}}</text>
+            </view>
+            <view class="group-card-progress">
+              <text class="group-card-pct">{{item.todayGoal ? Math.round(item.todayDone / item.todayGoal * 100) : 0}}%</text>
+              <view class="friend-progress-bar"><view class="friend-progress-fill" style="width: {{item.todayGoal ? (item.todayDone / item.todayGoal * 100) : 0}}%" /></view>
+            </view>
+          </view>
+          <view class="group-card-actions">
+            <text class="group-card-done">今日 {{item.todayDone}} / {{item.todayGoal}}</text>
+            <view class="group-card-btn" data-id="{{item.id}}" bindtap="joinGroup">加入</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="section">
+        <text class="section-title">小组动态</text>
+        <view wx:if="{{mixedFeed.length === 0}}" class="empty-feed">加入小组后，大家的打卡和分享会显示在这里。</view>
+        <block wx:else>
+        <view wx:for="{{mixedFeed}}" wx:key="id" class="feed-card">
+          <view class="feed-avatar">{{item.user.emoji}}</view>
+          <view class="feed-body">
+            <view class="feed-head">
+              <text class="feed-user">{{item.user.name}}</text>
+              <text wx:if="{{item.user.badge}}" class="feed-badge">{{item.user.badge}}</text>
+              <text wx:if="{{item.groupName}}" class="feed-group">{{item.groupName}}</text>
+              <text class="feed-time">{{item.timeLabel}}</text>
+            </view>
+            <view class="feed-content">{{item.content}}</view>
+            <view class="feed-actions">
+              <view class="feed-like" data-group-id="{{item.groupId}}" data-post-id="{{item.id}}" bindtap="onLike">
+                <t-icon name="{{item.likedByMe ? 'thumb-up-filled' : 'thumb-up'}}" size="28rpx" /> {{item.likes}}
+              </view>
+              <view class="feed-comment"><t-icon name="chat" size="28rpx" /> {{item.comments}}</view>
+            </view>
+          </view>
+        </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- all view -->
+    <block wx:if="{{view === 'all'}}">
+      <view class="search-bar">
+        <t-icon name="search" size="36rpx" />
+        <input class="search-input" placeholder="搜索小组名称 / 标签" value="{{search}}" bindinput="onSearchInput" />
+        <t-icon wx:if="{{search}}" name="close" size="32rpx" bindtap="onClearSearch" />
+      </view>
+      <view wx:for="{{allGroupsFiltered}}" wx:key="id" class="group-card">
+        <view class="group-card-main" data-id="{{item.id}}" bindtap="joinGroup">
+          <view class="group-card-icon">{{item.icon}}</view>
+          <view class="group-card-info">
+            <text class="group-card-name">{{item.name}}</text>
+            <text class="group-card-meta">{{item.memberCount}}人 · {{item.tag}}</text>
+          </view>
+          <view class="group-card-progress">
+            <text class="group-card-pct">{{item.todayGoal ? Math.round(item.todayDone / item.todayGoal * 100) : 0}}%</text>
+            <view class="friend-progress-bar"><view class="friend-progress-fill" style="width: {{item.todayGoal ? (item.todayDone / item.todayGoal * 100) : 0}}%" /></view>
+          </view>
+        </view>
+        <view class="group-card-actions">
+          <text class="group-card-done">今日 {{item.todayDone}} / {{item.todayGoal}}</text>
+          <view class="group-card-btn" data-id="{{item.id}}" bindtap="joinGroup">{{myGroupIds.indexOf(item.id) >= 0 ? '进入' : '加入'}}</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- space view -->
+    <block wx:if="{{view === 'space' && activeGroup}}">
+      <view class="space-hero">
+        <view class="space-hero-left">
+          <view class="space-icon">{{activeGroup.icon}}</view>
+          <view>
+            <view class="space-tag-row"><text class="space-tag">{{activeGroup.tag}}</text><text class="space-meta">{{activeGroup.memberCount}}人</text></view>
+            <text class="space-name">{{activeGroup.name}}</text>
+          </view>
+        </view>
+        <view class="space-leave" bindtap="leaveGroup"><t-icon name="logout" size="36rpx" /></view>
+      </view>
+      <view class="space-goal-card">
+        <view class="space-goal-head"><text>今日目标</text><text class="space-goal-num">{{activeGroup.todayGoal}} 词</text></view>
+        <view class="hero-progress-bar"><view class="hero-progress-fill" style="width: {{activeGroup.todayGoal ? (activeGroup.todayDone / activeGroup.todayGoal * 100) : 0}}%" /></view>
+        <view class="space-goal-footer">
+          <text>已完成 {{activeGroup.todayDone}} 词</text>
+          <view class="space-checkin-btn" bindtap="onCheckinOpen">记录打卡</view>
+        </view>
+      </view>
+
+      <view class="space-tabs">
+        <view class="space-tab {{tab === 'feed' ? 'space-tab--active' : ''}}" data-tab="feed" bindtap="setTab">动态</view>
+        <view class="space-tab {{tab === 'members' ? 'space-tab--active' : ''}}" data-tab="members" bindtap="setTab">成员</view>
+        <view class="space-tab {{tab === 'goal' ? 'space-tab--active' : ''}}" data-tab="goal" bindtap="setTab">目标</view>
+      </view>
+
+      <block wx:if="{{tab === 'feed'}}">
+        <view class="post-box">
+          <view class="post-label">发一条动态</view>
+          <view class="post-input-row">
+            <textarea class="post-input" placeholder="分享今天的学习进展/方法/心得…" value="{{postText}}" bindinput="onPostInput" />
+            <view class="post-send" bindtap="onPublishPost"><t-icon name="send" size="36rpx" /></view>
+          </view>
+        </view>
+        <view wx:if="{{activeFeed.length === 0}}" class="empty-feed">还没有动态，发布第一条带动小组氛围。</view>
+        <block wx:else>
+        <view wx:for="{{activeFeed}}" wx:key="id" class="feed-card">
+          <view class="feed-avatar">{{item.user.emoji}}</view>
+          <view class="feed-body">
+            <view class="feed-head">
+              <text class="feed-user">{{item.user.name}}</text>
+              <text wx:if="{{item.user.badge}}" class="feed-badge">{{item.user.badge}}</text>
+              <text class="feed-time">{{item.timeLabel}}</text>
+            </view>
+            <view class="feed-content">{{item.content}}</view>
+            <view class="feed-actions">
+              <view class="feed-like" data-group-id="{{activeGroup.id}}" data-post-id="{{item.id}}" bindtap="onLike">
+                <t-icon name="{{item.likedByMe ? 'thumb-up-filled' : 'thumb-up'}}" size="28rpx" /> {{item.likes}}
+              </view>
+              <view class="feed-comment"><t-icon name="chat" size="28rpx" /> {{item.comments}}</view>
+            </view>
+          </view>
+        </view>
+        </block>
+      </block>
+
+      <block wx:if="{{tab === 'members'}}">
+        <view class="members-card">
+          <view class="members-head"><text>成员</text><text class="members-count">{{activeGroup.members.length}} 人</text></view>
+          <view wx:for="{{activeGroup.members}}" wx:key="id" class="member-row">
+            <view class="member-avatar">{{item.name.charAt(0)}}</view>
+            <view class="member-info">
+              <view class="member-name-row">
+                <text>{{item.name}}</text>
+                <text wx:if="{{item.role !== '成员'}}" class="member-role">{{item.role}}</text>
+              </view>
+              <text class="member-extra">连续 {{item.streak}} 天 · 今日 {{item.todayWords}} 词</text>
+            </view>
+            <text class="member-follow">+关注</text>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{tab === 'goal'}}">
+        <view class="members-card">
+          <view class="members-head"><text>今日排行榜</text><text class="members-count">按完成词数</text></view>
+          <view wx:for="{{activeGroup.members}}" wx:key="id" class="goal-row">
+            <view class="goal-rank {{index === 0 ? 'goal-rank--1' : ''}}">{{index + 1}}</view>
+            <text class="goal-name">{{item.name}}</text>
+            <text class="goal-words">{{item.todayWords}} 词</text>
+          </view>
+        </view>
+        <view class="goal-tip">把今天的目标拆成 3 次小打卡（例如 50/50/50），更容易坚持也更有反馈感。</view>
+      </block>
+    </block>
+  </view>
+
+  <!-- create modal -->
+  <view wx:if="{{createOpen}}" class="mask" bindtap="onCloseCreate">
+    <view class="sheet" catchtap="">
+      <view class="sheet-title">创建小组</view>
+      <view class="form-label">小组名称</view>
+      <input class="sheet-input" placeholder="例如：考研英语长难句" value="{{createName}}" bindinput="onCreateNameInput" />
+      <view class="form-label">标签</view>
+      <view class="tag-chips">
+        <view wx:for="{{['打卡','互助','场景词汇','背诵计划','真题']}}" wx:key="*this" class="tag-chip {{createTag === item ? 'tag-chip--active' : ''}}" data-tag="{{item}}" bindtap="onCreateTagTap">{{item}}</view>
+      </view>
+      <view class="form-label">今日目标（词）</view>
+      <view class="form-row">
+        <input class="sheet-input" type="number" placeholder="150" value="{{createGoal}}" bindinput="onCreateGoalInput" />
+        <view class="tag-chip" bindtap="onGoalRecommend">推荐</view>
+      </view>
+      <view class="sheet-actions">
+        <view class="sheet-btn" bindtap="onCloseCreate">取消</view>
+        <view class="sheet-btn sheet-btn--primary" bindtap="onCreateConfirm">创建并加入</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- checkin modal -->
+  <view wx:if="{{checkinOpen}}" class="mask" bindtap="onCheckinClose">
+    <view class="sheet" catchtap="">
+      <view class="sheet-title">记录打卡</view>
+      <view class="form-label">我今天完成了（词）</view>
+      <input class="sheet-input" type="number" value="{{checkinWords}}" bindinput="onCheckinWordsInput" />
+      <view class="quick-chips">
+        <view wx:for="{{[10,30,50,80,120]}}" wx:key="*this" class="tag-chip" data-add="{{item}}" bindtap="onCheckinQuick">+{{item}}</view>
+      </view>
+      <view class="sheet-actions">
+        <view class="sheet-btn" bindtap="onCheckinClose">取消</view>
+        <view class="sheet-btn sheet-btn--primary" bindtap="onCheckinSubmit">提交</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{toast}}" class="toast">{{toast}}</view>
+</view>

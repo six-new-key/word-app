@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 统计</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stats.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <button class="icon-btn" onclick="history.back()">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <h1 class="page-title">学习统计</h1>
+            <button class="icon-btn" onclick="shareStats()">
+                <i data-lucide="share-2"></i>
+            </button>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 时间筛选 -->
+            <div class="time-filter">
+                <button class="filter-btn">7天</button>
+                <button class="filter-btn active">30天</button>
+                <button class="filter-btn">90天</button>
+                <button class="filter-btn">全部</button>
+            </div>
+
+            <!-- 核心数据 -->
+            <div class="core-stats">
+                <div class="core-stat-item">
+                    <div class="core-stat-value">1,250</div>
+                    <div class="core-stat-label">总词汇量</div>
+                </div>
+                <div class="core-stat-item">
+                    <div class="core-stat-value">938</div>
+                    <div class="core-stat-label">已掌握</div>
+                </div>
+                <div class="core-stat-item">
+                    <div class="core-stat-value">85%</div>
+                    <div class="core-stat-label">正确率</div>
+                </div>
+                <div class="core-stat-item">
+                    <div class="core-stat-value">42h</div>
+                    <div class="core-stat-label">学习时长</div>
+                </div>
+            </div>
+
+            <!-- 学习趋势图 -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>学习趋势</h3>
+                    <span class="chart-subtitle">近30天</span>
+                </div>
+                <div class="chart-container">
+                    <svg width="100%" height="180" viewBox="0 0 320 180">
+                        <defs>
+                            <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#007AFF;stop-opacity:0.3"/>
+                                <stop offset="100%" style="stop-color:#007AFF;stop-opacity:0"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- 网格线 -->
+                        <line x1="0" y1="150" x2="320" y2="150" stroke="#E5E5EA" stroke-width="1"/>
+                        <line x1="0" y1="110" x2="320" y2="110" stroke="#E5E5EA" stroke-width="1"/>
+                        <line x1="0" y1="70" x2="320" y2="70" stroke="#E5E5EA" stroke-width="1"/>
+                        <line x1="0" y1="30" x2="320" y2="30" stroke="#E5E5EA" stroke-width="1"/>
+                        <!-- 面积图 -->
+                        <path d="M 0,140 L 40,120 L 80,130 L 120,90 L 160,100 L 200,70 L 240,85 L 280,60 L 320,75 L 320,180 L 0,180 Z" 
+                              fill="url(#areaGradient)"/>
+                        <!-- 折线 -->
+                        <polyline points="0,140 40,120 80,130 120,90 160,100 200,70 240,85 280,60 320,75" 
+                                  fill="none" stroke="#007AFF" stroke-width="3" stroke-linecap="round"/>
+                        <!-- 数据点 -->
+                        <circle cx="280" cy="60" r="5" fill="#007AFF"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 词汇掌握分布 -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>词汇掌握分布</h3>
+                </div>
+                <div class="pie-chart">
+                    <svg width="140" height="140" viewBox="0 0 140 140">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#E5E5EA" stroke-width="20"/>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#34C759" stroke-width="20" 
+                                stroke-dasharray="377" stroke-dashoffset="94" transform="rotate(-90 70 70)"/>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="#FF9500" stroke-width="20" 
+                                stroke-dasharray="377" stroke-dashoffset="283" transform="rotate(180 70 70)"/>
+                    </svg>
+                    <div class="pie-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #34C759;"></span>
+                            <span class="legend-text">已掌握 938</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #FF9500;"></span>
+                            <span class="legend-text">学习中 227</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #E5E5EA;"></span>
+                            <span class="legend-text">未学习 85</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI分析 -->
+            <div class="ai-analysis">
+                <div class="ai-analysis-header">
+                    <i data-lucide="sparkles"></i>
+                    <span>AI学习分析</span>
+                </div>
+                <div class="analysis-content">
+                    <p>本月学习效率提升 <strong>20%</strong>，表现优秀！</p>
+                    <p>建议加强 <strong>词根记忆</strong> 和 <strong>词义辨析</strong> 练习。</p>
+                </div>
+                <div class="suggestions">
+                    <div class="suggestion-item">
+                        <i data-lucide="lightbulb"></i>
+                        <span>每天复习30个旧单词</span>
+                    </div>
+                    <div class="suggestion-item">
+                        <i data-lucide="lightbulb"></i>
+                        <span>重点关注易忘词列表</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="stats.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - AI助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-chat.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <button class="icon-btn" onclick="history.back()">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <div class="chat-title">
+                <div class="chat-avatar">
+                    <i data-lucide="sparkles"></i>
+                </div>
+                <span>AI学习助手</span>
+            </div>
+            <button class="icon-btn" onclick="showMenu()">
+                <i data-lucide="more-vertical"></i>
+            </button>
+        </header>
+
+        <!-- 聊天内容区 -->
+        <main class="chat-content">
+            <div class="chat-messages">
+                <!-- AI消息 -->
+                <div class="message ai-message">
+                    <div class="message-avatar">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <div class="message-bubble">
+                        <p>你好！我是你的AI学习助手 👋</p>
+                        <p>我可以帮你：</p>
+                        <ul>
+                            <li>解答单词疑问</li>
+                            <li>制定学习计划</li>
+                            <li>分析学习数据</li>
+                            <li>提供记忆技巧</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 用户消息 -->
+                <div class="message user-message">
+                    <div class="message-bubble">
+                        <p>如何快速记住单词？</p>
+                    </div>
+                </div>
+
+                <!-- AI消息 -->
+                <div class="message ai-message">
+                    <div class="message-avatar">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <div class="message-bubble">
+                        <p>这里有几个高效的记忆方法：</p>
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i data-lucide="lightbulb"></i>
+                            </div>
+                            <div class="tip-content">
+                                <div class="tip-title">词根词缀法</div>
+                                <div class="tip-text">通过拆解单词结构理解含义</div>
+                            </div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i data-lucide="image"></i>
+                            </div>
+                            <div class="tip-content">
+                                <div class="tip-title">联想记忆法</div>
+                                <div class="tip-text">将单词与图像或故事关联</div>
+                            </div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i data-lucide="repeat"></i>
+                            </div>
+                            <div class="tip-content">
+                                <div class="tip-title">间隔重复法</div>
+                                <div class="tip-text">科学安排复习时间</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 快捷回复 -->
+                <div class="quick-replies">
+                    <button class="quick-reply" onclick="sendMessage('制定学习计划')">
+                        制定学习计划
+                    </button>
+                    <button class="quick-reply" onclick="sendMessage('分析我的数据')">
+                        分析我的数据
+                    </button>
+                    <button class="quick-reply" onclick="sendMessage('推荐词库')">
+                        推荐词库
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部输入栏 -->
+        <div class="chat-input-area">
+            <button class="voice-btn">
+                <i data-lucide="mic"></i>
+            </button>
+            <input type="text" class="chat-input" placeholder="输入消息..." id="chatInput">
+            <button class="send-btn" onclick="sendMessage()">
+                <i data-lucide="send"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="ai-chat.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

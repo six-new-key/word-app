@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 测试</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="test.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <button class="icon-btn" onclick="history.back()">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="test-progress-bar">
+                <div class="test-progress-fill" style="width: 50%"></div>
+            </div>
+            <div class="test-counter">5/10</div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="test-content">
+            <!-- 题目卡片 -->
+            <div class="question-card">
+                <div class="question-number">第 5 题</div>
+                <div class="question-word">abandon</div>
+                <div class="question-phonetic">/əˈbændən/</div>
+                <div class="question-text">请选择正确的中文释义</div>
+            </div>
+
+            <!-- 选项列表 -->
+            <div class="options-list">
+                <div class="option-item" onclick="selectOption(this, 'A')">
+                    <div class="option-label">A</div>
+                    <div class="option-text">放弃；抛弃</div>
+                    <div class="option-check">
+                        <i data-lucide="check"></i>
+                    </div>
+                </div>
+
+                <div class="option-item" onclick="selectOption(this, 'B')">
+                    <div class="option-label">B</div>
+                    <div class="option-text">获得；得到</div>
+                    <div class="option-check">
+                        <i data-lucide="check"></i>
+                    </div>
+                </div>
+
+                <div class="option-item" onclick="selectOption(this, 'C')">
+                    <div class="option-label">C</div>
+                    <div class="option-text">能力；才能</div>
+                    <div class="option-check">
+                        <i data-lucide="check"></i>
+                    </div>
+                </div>
+
+                <div class="option-item" onclick="selectOption(this, 'D')">
+                    <div class="option-label">D</div>
+                    <div class="option-text">缺席；不在</div>
+                    <div class="option-check">
+                        <i data-lucide="check"></i>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部操作栏 -->
+        <div class="test-footer">
+            <button class="test-btn secondary" onclick="skipQuestion()">
+                <i data-lucide="skip-forward"></i>
+                <span>跳过</span>
+            </button>
+            <button class="test-btn primary" onclick="submitAnswer()" id="submitBtn" disabled>
+                <span>确认</span>
+                <i data-lucide="arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- 测试结果弹窗 -->
+        <div class="test-result-overlay" id="testResult" style="display: none;">
+            <div class="test-result-card">
+                <div class="result-icon">
+                    <i data-lucide="trophy"></i>
+                </div>
+                <div class="result-title">测试完成！</div>
+                <div class="result-score">85分</div>
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">正确</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">错误</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="stat-value">5:30</div>
+                        <div class="stat-label">用时</div>
+                    </div>
+                </div>
+                <div class="ai-feedback">
+                    <i data-lucide="sparkles"></i>
+                    <p>表现不错！建议加强词义辨析练习</p>
+                </div>
+                <div class="result-actions">
+                    <button class="result-btn secondary" onclick="viewErrors()">
+                        <i data-lucide="alert-circle"></i>
+                        <span>查看错题</span>
+                    </button>
+                    <button class="result-btn primary" onclick="retakeTest()">
+                        <i data-lucide="repeat"></i>
+                        <span>再测一次</span>
+                    </button>
+                </div>
+                <button class="close-result-btn" onclick="closeResult()">
+                    返回首页
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="test.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

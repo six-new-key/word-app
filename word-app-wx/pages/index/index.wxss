@@ -1,0 +1,47 @@
+.shell {
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: var(--app-bg-page-gradient, var(--app-bg-page));
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.shell__content {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Tab 切换淡入淡出 */
+.tab-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tab-pane--active {
+  position: relative;
+  opacity: 1;
+  z-index: 1;
+  pointer-events: auto;
+  transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tab-pane--inactive {
+  transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes tab-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tab-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

@@ -1,0 +1,73 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="学习计划" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="section">
+      <view class="section-head">
+        <view class="dot" />
+        <text class="section-title">每日目标</text>
+      </view>
+      <view class="plan-card">
+        <view class="plan-row">
+          <view class="counter-card counter-card--primary">
+            <text class="counter-label">新词</text>
+            <text class="counter-value">{{plan.dailyNew}}</text>
+            <view class="counter-actions">
+              <view class="counter-btn" bindtap="onDailyNewMinus"><t-icon name="remove" size="28rpx" /></view>
+              <view class="counter-btn counter-btn--plus" bindtap="onDailyNewPlus"><t-icon name="add" size="28rpx" /></view>
+            </view>
+          </view>
+          <view class="counter-card counter-card--purple">
+            <text class="counter-label">复习</text>
+            <text class="counter-value">{{plan.dailyReview}}</text>
+            <view class="counter-actions">
+              <view class="counter-btn" bindtap="onDailyReviewMinus"><t-icon name="remove" size="28rpx" /></view>
+              <view class="counter-btn counter-btn--plus" bindtap="onDailyReviewPlus"><t-icon name="add" size="28rpx" /></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-head">
+        <view class="dot dot--purple" />
+        <text class="section-title">学习日</text>
+      </view>
+      <view class="plan-card">
+        <view class="day-chips">
+          <view wx:for="{{dayLabels}}" wx:key="label" class="day-chip {{plan.days.indexOf(item.value) >= 0 ? 'day-chip--active' : ''}}" data-day="{{item.value}}" bindtap="onToggleDay">{{item.label}}</view>
+        </view>
+        <view class="day-hint">
+          <t-icon name="time" size="28rpx" />
+          <text>{{plan.days.length ? '已选 ' + plan.days.length + ' 天' : '至少选择 1 天'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-head">
+        <view class="dot dot--accent" />
+        <text class="section-title">提醒</text>
+      </view>
+      <view class="plan-card">
+        <view class="setting-row">
+          <text>每日提醒</text>
+          <t-switch value="{{plan.remindEnabled}}" bind:change="onRemindSwitch" />
+        </view>
+        <view class="setting-row">
+          <text>提醒时间</text>
+          <picker mode="time" value="{{plan.remindTime}}" bindchange="onRemindTimeChange">
+            <view class="setting-row-right">
+              <text class="value">{{plan.remindTime}}</text>
+              <t-icon name="chevron-right" size="28rpx" />
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="save-btn" bindtap="onSave">保存计划</view>
+  </view>
+
+  <view wx:if="{{toast}}" class="toast">{{toast}}</view>
+</view>

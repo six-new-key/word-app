@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背单词APP原型 - 导航页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Han Sans CN', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2E86AB;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2E86AB;
+        }
+        
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .page-card {
+            background: #F9F7F5;
+            border: 2px solid #E5E5E5;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .page-card:hover {
+            background: #2E86AB;
+            color: white;
+            border-color: #2E86AB;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(46, 134, 171, 0.3);
+        }
+        
+        .page-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .page-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .page-desc {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        .features {
+            background: #FFF9E6;
+            border: 2px solid #F5A623;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .features h3 {
+            color: #F5A623;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .features ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .features li {
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .features li:before {
+            content: "✓ ";
+            color: #F5A623;
+            font-weight: bold;
+        }
+        
+        .start-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            background: #2E86AB;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .start-btn:hover {
+            background: #246d8a;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(46, 134, 171, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .page-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 背单词APP - 交互原型</h1>
+        <p class="subtitle">基于iPhone 15标准版 (390×844px) | 现代iOS风格设计</p>
+        
+        <div class="section">
+            <div class="section-title">🎯 核心页面（4个Tabbar）</div>
+            <div class="page-grid">
+                <a href="index.html" class="page-card">
+                    <div class="page-icon">🏠</div>
+                    <div class="page-name">首页</div>
+                    <div class="page-desc">AI学习卡片 + 快捷功能</div>
+                </a>
+                <a href="learn.html" class="page-card">
+                    <div class="page-icon">📖</div>
+                    <div class="page-name">学习页</div>
+                    <div class="page-desc">单词卡片 + AI辅助</div>
+                </a>
+                <a href="library.html" class="page-card">
+                    <div class="page-icon">📚</div>
+                    <div class="page-name">词库页</div>
+                    <div class="page-desc">词库分类 + 管理</div>
+                </a>
+                <a href="profile.html" class="page-card">
+                    <div class="page-icon">👤</div>
+                    <div class="page-name">我的页</div>
+                    <div class="page-desc">个人中心 + 统计</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🔧 辅助页面</div>
+            <div class="page-grid">
+                <a href="test.html" class="page-card">
+                    <div class="page-icon">✍️</div>
+                    <div class="page-name">测试页</div>
+                    <div class="page-desc">单词测试 + 报告</div>
+                </a>
+                <a href="stats.html" class="page-card">
+                    <div class="page-icon">📊</div>
+                    <div class="page-name">统计页</div>
+                    <div class="page-desc">数据图表 + AI分析</div>
+                </a>
+                <a href="settings.html" class="page-card">
+                    <div class="page-icon">⚙️</div>
+                    <div class="page-name">设置页</div>
+                    <div class="page-desc">学习/提醒/AI设置</div>
+                </a>
+                <a href="ai-chat.html" class="page-card">
+                    <div class="page-icon">💬</div>
+                    <div class="page-name">AI聊天页</div>
+                    <div class="page-desc">AI搭子 + 小游戏</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h3>✨ 原型特性</h3>
+            <ul>
+                <li>现代大圆角设计</li>
+                <li>流畅动画效果</li>
+                <li>在线图标库(Lucide)</li>
+                <li>完整页面跳转</li>
+                <li>夜间模式切换</li>
+                <li>交互动效反馈</li>
+                <li>AI智能辅助</li>
+                <li>完整模拟数据</li>
+            </ul>
+        </div>
+        
+        <a href="index.html" class="start-btn">🚀 开始体验</a>
+    </div>
+</body>
+</html>

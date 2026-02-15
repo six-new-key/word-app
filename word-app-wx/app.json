@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/test/test",
+    "pages/statistics/statistics",
+    "pages/settings/settings",
+    "pages/ai-chat/ai-chat",
+    "pages/mistakes/mistakes",
+    "pages/vocabulary-import/vocabulary-import",
+    "pages/vocabulary-edit/vocabulary-edit",
+    "pages/study-group/study-group",
+    "pages/friends/friends",
+    "pages/study-plan/study-plan",
+    "pages/notifications/notifications",
+    "pages/help-feedback/help-feedback"
+  ],
+  "window": {
+    "navigationBarTextStyle": "@navTxtStyle",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "@navBgColor"
+  },
+  "darkmode": true,
+  "themeLocation": "theme.json",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-progress": "tdesign-miniprogram/progress/progress",
+    "t-icon": "tdesign-miniprogram/icon/icon"
+  }
+}

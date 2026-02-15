@@ -1,0 +1,81 @@
+<view class="learning-content theme-{{theme || 'light'}}">
+  <view class="learning-content__header">
+    <view class="learning-content__nav">
+      <view class="learning-content__title">今日复习</view>
+      <view class="learning-content__settings" bindtap="onSettings">
+        <t-icon name="setting" size="36rpx" />
+      </view>
+    </view>
+    <view class="learning-content__progress-head">
+      <view>
+        <view class="learning-content__tag">雅思核心词汇</view>
+        <text class="learning-content__day">Day 12</text>
+      </view>
+      <view class="learning-content__count">{{doneCount}} / {{total}}</view>
+    </view>
+    <t-progress theme="line" percentage="{{progress}}" stroke-width="6" />
+  </view>
+
+  <view class="learning-content__body">
+    <block wx:if="{{cards.length > 0}}">
+      <view class="learning-content__card">
+        <view class="learning-content__card-top">
+          <view class="learning-content__undo" bindtap="onUndo">
+            <t-icon name="refresh" size="36rpx" />
+          </view>
+          <view class="learning-content__bookmark" bindtap="onBookmark">
+            <t-icon name="{{bookmarks[cards[0].id] ? 'star-filled' : 'star'}}" size="36rpx" class="{{bookmarks[cards[0].id] ? 'learning-content__bookmark--active' : ''}}" />
+          </view>
+        </view>
+        <view class="learning-content__card-word">{{cards[0].word}}</view>
+        <view class="learning-content__card-type">{{cards[0].type}}</view>
+        <view class="learning-content__card-phonetic">{{cards[0].phonetic}}</view>
+        <view class="learning-content__card-divider" />
+        <view class="learning-content__card-mean">{{cards[0].mean}}</view>
+        <view class="learning-content__card-en">"{{cards[0].en}}"</view>
+        <block wx:if="{{cards[0].roots}}">
+          <view class="learning-content__roots">
+            <text class="learning-content__roots-label">词根记忆</text>
+            <text class="learning-content__roots-text">{{cards[0].roots}}</text>
+          </view>
+        </block>
+        <block wx:if="{{cards[0].sentences && cards[0].sentences.length}}">
+          <view class="learning-content__section">
+            <text class="learning-content__section-label">例句</text>
+            <view wx:for="{{cards[0].sentences}}" wx:key="*this" class="learning-content__sentence">{{item}}</view>
+          </view>
+        </block>
+        <block wx:if="{{cards[0].synonyms && cards[0].synonyms.length}}">
+          <view class="learning-content__section">
+            <text class="learning-content__section-label">同义词</text>
+            <view class="learning-content__synonyms">
+              <text wx:for="{{cards[0].synonyms}}" wx:key="*this" class="learning-content__synonym">{{item}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="learning-content__controls">
+        <view class="learning-content__btn learning-content__btn--wrong" bindtap="onKnow">
+          <t-icon name="close" size="48rpx" />
+          <text>不认识</text>
+        </view>
+        <view class="learning-content__btn learning-content__btn--undo" bindtap="onUndo">
+          <t-icon name="refresh" size="40rpx" />
+        </view>
+        <view class="learning-content__btn learning-content__btn--right" bindtap="onKnow">
+          <t-icon name="check" size="48rpx" />
+          <text>认识</text>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="learning-content__done">
+        <view class="learning-content__done-emoji">🎉</view>
+        <text class="learning-content__done-title">今日目标达成!</text>
+        <text class="learning-content__done-sub">离梦想又近了一步，明天见！</text>
+        <t-button theme="primary" size="large" bind:tap="onBackHome">返回首页</t-button>
+      </view>
+    </block>
+  </view>
+</view>

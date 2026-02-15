@@ -1,0 +1,119 @@
+<view class="home-content">
+  <!-- 顶部：背景渐变 -->
+  <view class="home-content__bg" />
+
+  <!-- 导航区：左 greeting，右 月亮+设置 -->
+  <view class="home-content__header">
+    <view class="home-content__greeting">
+      <text class="home-content__greeting-main">你好，同学</text>
+      <text class="home-content__greeting-sub">今天也要加油哦！</text>
+    </view>
+    <view class="home-content__actions">
+      <view class="home-content__icon-btn" role="button" aria-label="深色模式" bindtap="onThemeClick">
+        <t-icon name="refresh" size="40rpx" />
+      </view>
+      <view class="home-content__icon-btn" role="button" aria-label="设置" bindtap="onSettingsClick">
+        <t-icon name="setting" size="40rpx" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日目标卡片 -->
+  <view class="home-content__section">
+    <view class="home-content__section-head">
+      <view class="home-content__dot" />
+      <text class="home-content__section-title">今日目标</text>
+    </view>
+    <view class="home-content__goal-card" bindtap="onGoalCardTap">
+      <view class="home-content__goal-inner">
+        <view class="home-content__goal-top">
+          <view class="home-content__goal-tag">每日计划</view>
+          <view class="home-content__goal-title-wrap">
+            <text class="home-content__goal-title">开启</text>
+            <text class="home-content__goal-title-br">学习之旅</text>
+          </view>
+          <view class="home-content__goal-emoji">🚀</view>
+        </view>
+        <view class="home-content__goal-progress-wrap">
+          <view class="home-content__goal-progress-head">
+            <text class="home-content__goal-progress-label">当前进度</text>
+            <text class="home-content__goal-progress-value">{{goalProgress}}%</text>
+          </view>
+          <t-progress theme="plump" percentage="{{goalProgress}}" stroke-width="16" color="var(--app-primary-light)" track-color="rgba(0,0,0,0.2)" />
+          <view class="home-content__goal-stats">
+            <view class="home-content__goal-stat">
+              <text class="home-content__goal-stat-label">新词</text>
+              <text class="home-content__goal-stat-num">{{goalNew}}</text>
+            </view>
+            <view class="home-content__goal-stat">
+              <text class="home-content__goal-stat-label">复习</text>
+              <text class="home-content__goal-stat-num">{{goalReview}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="home-content__section">
+    <view class="home-content__section-head">
+      <view class="home-content__dot home-content__dot--purple" />
+      <text class="home-content__section-title">快捷入口</text>
+    </view>
+    <view class="home-content__shortcuts">
+      <view class="home-content__shortcut" bindtap="onShortcutTap" data-url="tab:learning">
+        <view class="home-content__shortcut-icon home-content__shortcut-icon--primary">
+          <t-icon name="refresh" size="48rpx" />
+        </view>
+        <text class="home-content__shortcut-label">每日</text>
+        <text class="home-content__shortcut-sub">复习</text>
+      </view>
+      <view class="home-content__shortcut" bindtap="onShortcutTap" data-url="/pages/test/test">
+        <view class="home-content__shortcut-icon home-content__shortcut-icon--purple">
+          <t-icon name="bulb" size="48rpx" />
+        </view>
+        <text class="home-content__shortcut-label">记忆</text>
+        <text class="home-content__shortcut-sub">测试</text>
+      </view>
+      <view class="home-content__shortcut" bindtap="onShortcutTap" data-url="/pages/ai-chat/ai-chat">
+        <view class="home-content__shortcut-icon home-content__shortcut-icon--accent">
+          <t-icon name="chat" size="48rpx" />
+        </view>
+        <text class="home-content__shortcut-label">AI</text>
+        <text class="home-content__shortcut-sub">助手</text>
+      </view>
+      <view class="home-content__shortcut" bindtap="onShortcutTap" data-url="/pages/mistakes/mistakes">
+        <view class="home-content__shortcut-icon home-content__shortcut-icon--error">
+          <t-icon name="error-circle" size="48rpx" />
+        </view>
+        <text class="home-content__shortcut-label">错题</text>
+        <text class="home-content__shortcut-sub">本</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 本周趋势 -->
+  <view class="home-content__section">
+    <view class="home-content__section-row">
+      <view class="home-content__section-head">
+        <view class="home-content__dot home-content__dot--accent" />
+        <text class="home-content__section-title">本周趋势</text>
+      </view>
+      <view class="home-content__report-link" bindtap="onReportTap">
+        <text>完整报告</text>
+        <t-icon name="chevron-right" size="28rpx" />
+      </view>
+    </view>
+    <view class="home-content__trend-card" bindtap="onReportTap">
+      <view class="home-content__trend-bars">
+        <view wx:for="{{trendData}}" wx:key="index" class="home-content__trend-bar-wrap {{index === 5 ? 'home-content__trend-bar-wrap--highlight' : ''}}">
+          <view class="home-content__trend-bar" style="height: {{item}}%;" />
+        </view>
+      </view>
+      <view class="home-content__trend-labels">
+        <text>一</text><text>二</text><text>三</text><text>四</text><text>五</text><text>六</text><text>日</text>
+      </view>
+    </view>
+  </view>
+</view>

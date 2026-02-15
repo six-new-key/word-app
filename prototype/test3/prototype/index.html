@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 首页</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <div class="navbar-left">
+                <div class="user-avatar">
+                    <i data-lucide="user" class="avatar-icon"></i>
+                </div>
+                <div class="user-info">
+                    <div class="greeting">早上好 👋</div>
+                    <div class="username">学习达人</div>
+                </div>
+            </div>
+            <div class="navbar-actions">
+                <button class="icon-btn" onclick="navigateTo('stats.html')">
+                    <i data-lucide="bar-chart-3"></i>
+                </button>
+                <button class="icon-btn" onclick="toggleSettings()">
+                    <i data-lucide="settings"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部欢迎区 -->
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h1 class="welcome-title">继续学习</h1>
+                    <p class="welcome-subtitle">今天也要加油哦 ✨</p>
+                </div>
+                <div class="daily-streak">
+                    <div class="streak-number">7</div>
+                    <div class="streak-label">天连续</div>
+                </div>
+            </div>
+
+            <!-- 今日进度 - 卡片式 -->
+            <div class="today-progress" onclick="navigateTo('learn.html')">
+                <div class="progress-header">
+                    <div class="progress-info">
+                        <span class="progress-label">今日进度</span>
+                        <span class="progress-count">13 / 20 词</span>
+                    </div>
+                    <div class="progress-percent">65%</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="progress-footer">
+                    <div class="progress-stat">
+                        <i data-lucide="clock"></i>
+                        <span>25分钟</span>
+                    </div>
+                    <div class="progress-stat">
+                        <i data-lucide="target"></i>
+                        <span>还差7个</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学习数据概览 -->
+            <div class="stats-overview">
+                <div class="stat-item-new mastered">
+                    <div class="stat-icon-new">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+                    <div class="stat-content-new">
+                        <div class="stat-value-new">938</div>
+                        <div class="stat-label-new">已掌握</div>
+                    </div>
+                </div>
+                <div class="stat-item-new learning">
+                    <div class="stat-icon-new">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div class="stat-content-new">
+                        <div class="stat-value-new">227</div>
+                        <div class="stat-label-new">学习中</div>
+                    </div>
+                </div>
+                <div class="stat-item-new accuracy">
+                    <div class="stat-icon-new">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div class="stat-content-new">
+                        <div class="stat-value-new">85%</div>
+                        <div class="stat-label-new">正确率</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快速操作 - 大按钮 -->
+            <div class="action-buttons">
+                <button class="action-btn-large primary" onclick="navigateTo('learn.html')">
+                    <div class="action-btn-icon">
+                        <i data-lucide="play"></i>
+                    </div>
+                    <div class="action-btn-text">
+                        <div class="action-btn-title">开始学习</div>
+                        <div class="action-btn-subtitle">继续今日计划</div>
+                    </div>
+                    <i data-lucide="chevron-right" class="action-btn-arrow"></i>
+                </button>
+                
+                <button class="action-btn-large secondary" onclick="navigateTo('test.html')">
+                    <div class="action-btn-icon">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <div class="action-btn-text">
+                        <div class="action-btn-title">智能测试</div>
+                        <div class="action-btn-subtitle">检验学习成果</div>
+                    </div>
+                    <i data-lucide="chevron-right" class="action-btn-arrow"></i>
+                </button>
+            </div>
+
+            <!-- 更多功能 -->
+            <div class="more-actions">
+                <div class="more-action-item" onclick="navigateTo('learn.html?mode=review')">
+                    <div class="more-action-icon review">
+                        <i data-lucide="repeat"></i>
+                    </div>
+                    <span>复习</span>
+                </div>
+                <div class="more-action-item" onclick="navigateTo('learn.html?mode=wrong')">
+                    <div class="more-action-icon wrong">
+                        <i data-lucide="bookmark"></i>
+                        <span class="more-action-badge">85</span>
+                    </div>
+                    <span>错题本</span>
+                </div>
+                <div class="more-action-item" onclick="navigateTo('library.html')">
+                    <div class="more-action-icon library">
+                        <i data-lucide="library"></i>
+                    </div>
+                    <span>词库</span>
+                </div>
+                <div class="more-action-item" onclick="navigateTo('stats.html')">
+                    <div class="more-action-icon stats">
+                        <i data-lucide="bar-chart-3"></i>
+                    </div>
+                    <span>统计</span>
+                </div>
+            </div>
+
+            <!-- 学习趋势 -->
+            <div class="trend-card">
+                <div class="trend-header">
+                    <h3>本周学习</h3>
+                    <span class="trend-total">175分钟</span>
+                </div>
+                <div class="trend-chart">
+                    <div class="trend-bar" style="height: 45%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">一</span>
+                    </div>
+                    <div class="trend-bar" style="height: 70%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">二</span>
+                    </div>
+                    <div class="trend-bar" style="height: 55%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">三</span>
+                    </div>
+                    <div class="trend-bar" style="height: 90%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">四</span>
+                    </div>
+                    <div class="trend-bar" style="height: 80%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">五</span>
+                    </div>
+                    <div class="trend-bar" style="height: 60%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">六</span>
+                    </div>
+                    <div class="trend-bar active" style="height: 75%">
+                        <div class="trend-bar-fill"></div>
+                        <span class="trend-day">日</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- AI助手悬浮按钮 -->
+        <button class="ai-fab" onclick="navigateTo('ai-chat.html')">
+            <i data-lucide="sparkles"></i>
+        </button>
+
+        <!-- 底部Tabbar -->
+        <nav class="tabbar">
+            <a href="index.html" class="tab-item active">
+                <i data-lucide="home"></i>
+                <span>首页</span>
+            </a>
+            <a href="learn.html" class="tab-item">
+                <i data-lucide="book-open"></i>
+                <span>学习</span>
+            </a>
+            <a href="library.html" class="tab-item">
+                <i data-lucide="library"></i>
+                <span>词库</span>
+            </a>
+            <a href="profile.html" class="tab-item">
+                <i data-lucide="user"></i>
+                <span>我的</span>
+            </a>
+        </nav>
+
+        <!-- 设置侧边栏 -->
+        <div class="sidebar" id="settingsSidebar">
+            <div class="sidebar-header">
+                <h3>设置</h3>
+                <button class="close-btn" onclick="toggleSettings()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <a href="settings.html" class="sidebar-item">
+                    <i data-lucide="sliders"></i>
+                    <span>学习设置</span>
+                    <i data-lucide="chevron-right"></i>
+                </a>
+                <a href="settings.html" class="sidebar-item">
+                    <i data-lucide="bell"></i>
+                    <span>提醒设置</span>
+                    <i data-lucide="chevron-right"></i>
+                </a>
+                <a href="settings.html" class="sidebar-item">
+                    <i data-lucide="moon"></i>
+                    <span>夜间模式</span>
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleNightMode()">
+                        <span class="slider"></span>
+                    </label>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="index.js"></script>
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+    </script>
+</body>
+</html>

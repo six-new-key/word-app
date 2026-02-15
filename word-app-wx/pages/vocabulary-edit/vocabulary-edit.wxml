@@ -1,0 +1,44 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{title}}" left-arrow placeholder bind:go-back="onBack" />
+  <view class="nav-actions">
+    <view class="save-btn" bindtap="onSave">保存</view>
+  </view>
+  <view class="page-body">
+    <view class="form-section">
+      <view class="form-item">
+        <text class="form-label">词库名称</text>
+        <input class="form-input" value="{{book.title}}" placeholder="请输入词库名称" />
+      </view>
+      <view class="form-row">
+        <view class="form-item flex-1">
+          <text class="form-label">分类</text>
+          <picker mode="selector" range="['自定义','考试','职场','生活']" range-key="name">
+            <view class="form-input">{{book.category}}</view>
+          </picker>
+        </view>
+        <view class="form-item flex-1">
+          <text class="form-label">难度</text>
+          <picker mode="selector" range="['简单','中等','困难']">
+            <view class="form-input">{{book.level}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="word-section">
+      <view class="word-header">
+        <text>单词列表 ({{words.length}})</text>
+        <text class="batch-btn">批量选择</text>
+      </view>
+      <view wx:for="{{words}}" wx:key="word" class="word-item">
+        <view>
+          <text class="word-item__word">{{item.word}}</text>
+          <text class="word-item__mean">{{item.mean}}</text>
+        </view>
+      </view>
+      <view class="add-word-btn">
+        <t-icon name="add" size="32rpx" />
+        <text>添加单词</text>
+      </view>
+    </view>
+  </view>
+</view>

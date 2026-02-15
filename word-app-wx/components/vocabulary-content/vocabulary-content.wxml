@@ -1,0 +1,67 @@
+<view class="vocabulary-content">
+  <view class="vocabulary-content__header">
+    <view class="vocabulary-content__search-wrap">
+      <t-icon name="search" size="32rpx" class="vocabulary-content__search-icon" />
+      <input class="vocabulary-content__search-input" placeholder="搜索单词/词库" value="{{searchValue}}" bindinput="onSearch" />
+    </view>
+    <view class="vocabulary-content__import-btn" bindtap="onImport">
+      <t-icon name="add" size="36rpx" />
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="vocabulary-content__scroll">
+    <view class="vocabulary-content__section">
+      <view class="vocabulary-content__section-head">
+        <view class="vocabulary-content__dot" />
+        <text class="vocabulary-content__section-title">正在学习</text>
+      </view>
+      <view class="vocabulary-content__learning-card" bindtap="onLearningCard">
+        <view class="vocabulary-content__lc-inner">
+          <view class="vocabulary-content__lc-top">
+            <view>
+              <view class="vocabulary-content__lc-tag">当前进度 45%</view>
+              <text class="vocabulary-content__lc-title">CET-4 核心词汇</text>
+              <text class="vocabulary-content__lc-sub">剩余 1350 词 · 预计 15 天完成</text>
+            </view>
+            <view class="vocabulary-content__lc-icon">📖</view>
+          </view>
+          <view class="vocabulary-content__lc-btn">继续学习</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="vocabulary-content__section">
+      <view class="vocabulary-content__section-head">
+        <view class="vocabulary-content__dot vocabulary-content__dot--purple" />
+        <text class="vocabulary-content__section-title">发现词库</text>
+      </view>
+      <scroll-view scroll-x class="vocabulary-content__categories" scroll-with-animation>
+        <view wx:for="{{categories}}" wx:key="*this" class="vocabulary-content__cat {{activeCategory === index ? 'vocabulary-content__cat--active' : ''}}" data-index="{{index}}" bindtap="onCategoryTap">{{item}}</view>
+      </scroll-view>
+    </view>
+
+    <view class="vocabulary-content__grid">
+      <block wx:if="{{activeCategory === 0 || activeCategory === 1}}">
+        <view class="vocabulary-content__book-card vocabulary-content__book-card--create" bindtap="onCreateBook">
+          <t-icon name="add" size="48rpx" />
+          <text>创建词库</text>
+        </view>
+      </block>
+      <view wx:for="{{filteredBooks}}" wx:key="id" class="vocabulary-content__book-card" data-id="{{item.id}}" bindtap="onBookCard">
+        <view class="vocabulary-content__book-header">
+          <view class="vocabulary-content__book-icon vocabulary-content__book-icon--{{item.iconColor}}">
+            <t-icon name="books" size="40rpx" />
+          </view>
+          <view class="vocabulary-content__book-tag vocabulary-content__book-tag--{{item.tagColor}}">{{item.tag}}</view>
+        </view>
+        <text class="vocabulary-content__book-title">{{item.title}}</text>
+        <view class="vocabulary-content__book-meta">
+          <t-icon name="file" size="20rpx" />
+          <text>{{item.count}} 词</text>
+        </view>
+        <t-progress theme="line" percentage="{{item.progress}}" stroke-width="6" />
+      </view>
+    </view>
+    <view wx:if="{{filteredBooks.length === 0 && activeCategory !== 1}}" class="vocabulary-content__empty">暂无相关词库</view>
+  </scroll-view>
+</view>

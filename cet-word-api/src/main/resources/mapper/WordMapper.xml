@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cetword.mapper.WordMapper">
+
+    <!-- 基础结果映射 -->
+    <resultMap id="BaseResultMap" type="com.cetword.entity.Word">
+        <id column="id" property="id"/>
+        <result column="category" property="category"/>
+        <result column="word_rank" property="wordRank"/>
+        <result column="head_word" property="headWord"/>
+        <result column="book_id" property="bookId"/>
+        <result column="word_head" property="wordHead"/>
+        <result column="word_id" property="wordId"/>
+        <result column="us_phone" property="usPhone"/>
+        <result column="uk_phone" property="ukPhone"/>
+        <result column="us_speech" property="usSpeech"/>
+        <result column="uk_speech" property="ukSpeech"/>
+        <result column="phone" property="phone"/>
+        <result column="star" property="star"/>
+        <result column="picture" property="picture"/>
+        <result column="speech" property="speech"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 简要信息结果映射 -->
+    <resultMap id="SimpleResultMap" type="com.cetword.entity.vo.WordSimpleVO">
+        <id column="id" property="id"/>
+        <result column="category" property="category"/>
+        <result column="word_rank" property="wordRank"/>
+        <result column="head_word" property="headWord"/>
+        <result column="us_phone" property="usPhone"/>
+        <result column="uk_phone" property="ukPhone"/>
+        <result column="brief_trans" property="briefTrans"/>
+    </resultMap>
+
+    <!-- 分页查询单词列表（带category条件） -->
+    <select id="selectWordList" resultMap="SimpleResultMap">
+        SELECT
+        w.id,
+        w.category,
+        w.word_rank,
+        w.head_word,
+        w.us_phone,
+        w.uk_phone,
+        (SELECT GROUP_CONCAT(tran_cn SEPARATOR '; ')
+        FROM word_trans
+        WHERE word_main_id = w.id
+        LIMIT 1) as brief_trans
+        FROM words w
+        <where>
+            w.category = #{category}
+            <if test="keyword != null and keyword != ''">
+                AND w.head_word LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="bookId != null and bookId != ''">
+                AND w.book_id = #{bookId}
+            </if>
+        </where>
+        ORDER BY w.word_rank ASC, w.id ASC
+    </select>
+
+    <!-- 根据ID查询单词 -->
+    <select id="selectWordById" resultMap="BaseResultMap">
+        SELECT * FROM words WHERE id = #{id}
+    </select>
+
+    <!-- 根据headWord和category查询 -->
+    <select id="selectByHeadWord" resultMap="BaseResultMap">
+        SELECT * FROM words
+        WHERE head_word = #{headWord}
+        AND category = #{category}
+        <if test="bookId != null and bookId != ''">
+            AND book_id = #{bookId}
+        </if>
+        LIMIT 1
+    </select>
+
+    <!-- 随机获取一个单词ID（指定类别） -->
+    <select id="selectRandomWordId" resultType="java.lang.Integer">
+        SELECT id FROM words
+        WHERE category = #{category}
+        ORDER BY RAND()
+        LIMIT 1
+    </select>
+
+    <!-- ==================== 子表查询（无需category，通过word_main_id关联）==================== -->
+
+    <!-- 查询翻译 -->
+    <select id="selectTransByWordId" resultType="com.cetword.entity.WordTrans">
+        SELECT * FROM word_trans
+        WHERE word_main_id = #{wordId}
+        ORDER BY id ASC
+    </select>
+
+    <!-- 查询普通例句 -->
+    <select id="selectSentencesByWordId" resultType="com.cetword.entity.WordSentence">
+        SELECT * FROM word_sentences
+        WHERE word_main_id = #{wordId}
+        ORDER BY id ASC
+    </select>
+
+    <!-- 查询真题例句 -->
+    <select id="selectRealExamSentencesByWordId" resultType="com.cetword.entity.WordRealExamSentence">
+        SELECT * FROM word_real_exam_sentences
+        WHERE word_main_id = #{wordId}
+        ORDER BY year DESC, id ASC
+    </select>
+
+    <!-- 查询短语 -->
+    <select id="selectPhrasesByWordId" resultType="com.cetword.entity.WordPhrase">
+        SELECT * FROM word_phrases
+        WHERE word_main_id = #{wordId}
+        ORDER BY id ASC
+    </select>
+
+    <!-- 查询同近义词 -->
+    <select id="selectSynosByWordId" resultType="com.cetword.entity.WordSyno">
+        SELECT * FROM word_synos
+        WHERE word_main_id = #{wordId}
+        ORDER BY pos ASC, id ASC
+    </select>
+
+    <!-- 查询同根词 -->
+    <select id="selectRootsByWordId" resultType="com.cetword.entity.WordRoot">
+        SELECT * FROM word_roots
+        WHERE word_main_id = #{wordId}
+        ORDER BY pos ASC, id ASC
+    </select>
+
+    <!-- 查询记忆方法 -->
+    <select id="selectRemMethodByWordId" resultType="com.cetword.entity.WordRemMethod">
+        SELECT * FROM word_rem_methods
+        WHERE word_main_id = #{wordId}
+        LIMIT 1
+    </select>
+
+    <!-- 查询测试题 -->
+    <select id="selectExamsByWordId" resultType="com.cetword.entity.WordExam">
+        SELECT * FROM word_exams
+        WHERE word_main_id = #{wordId}
+        ORDER BY id ASC
+    </select>
+
+    <!-- 查询选项 -->
+    <select id="selectChoicesByExamId" resultType="com.cetword.entity.WordExamChoice">
+        SELECT * FROM word_exam_choices
+        WHERE exam_main_id = #{examId}
+        ORDER BY choice_index ASC
+    </select>
+
+</mapper>

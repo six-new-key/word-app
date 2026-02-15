@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 词库</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="library.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <div class="navbar-left">
+                <h1 class="page-title">词库</h1>
+            </div>
+            <div class="navbar-actions">
+                <button class="icon-btn" onclick="showSearch()">
+                    <i data-lucide="search"></i>
+                </button>
+                <button class="icon-btn" onclick="navigateTo('library-add.html')">
+                    <i data-lucide="plus"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 分类标签 -->
+            <div class="category-tabs">
+                <button class="category-tab active">全部</button>
+                <button class="category-tab">考试</button>
+                <button class="category-tab">生活</button>
+                <button class="category-tab">商务</button>
+                <button class="category-tab">自定义</button>
+            </div>
+
+            <!-- 词库列表 -->
+            <div class="library-list">
+                <!-- 词库卡片1 -->
+                <div class="library-card" onclick="navigateTo('library-detail.html?id=1')">
+                    <div class="library-icon cet4">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <div class="library-info">
+                        <div class="library-name">CET-4 核心词汇</div>
+                        <div class="library-meta">
+                            <span class="word-count">2,000词</span>
+                            <span class="progress-text">已学 450</span>
+                        </div>
+                        <div class="library-progress">
+                            <div class="library-progress-bar" style="width: 22.5%"></div>
+                        </div>
+                    </div>
+                    <button class="library-action" onclick="event.stopPropagation(); startLearn(1)">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+
+                <!-- 词库卡片2 -->
+                <div class="library-card" onclick="navigateTo('library-detail.html?id=2')">
+                    <div class="library-icon cet6">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <div class="library-info">
+                        <div class="library-name">CET-6 高频词汇</div>
+                        <div class="library-meta">
+                            <span class="word-count">1,500词</span>
+                            <span class="progress-text">已学 120</span>
+                        </div>
+                        <div class="library-progress">
+                            <div class="library-progress-bar" style="width: 8%"></div>
+                        </div>
+                    </div>
+                    <button class="library-action" onclick="event.stopPropagation(); startLearn(2)">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+
+                <!-- 词库卡片3 -->
+                <div class="library-card" onclick="navigateTo('library-detail.html?id=3')">
+                    <div class="library-icon toefl">
+                        <i data-lucide="globe"></i>
+                    </div>
+                    <div class="library-info">
+                        <div class="library-name">TOEFL 核心词汇</div>
+                        <div class="library-meta">
+                            <span class="word-count">4,000词</span>
+                            <span class="progress-text">未开始</span>
+                        </div>
+                        <div class="library-progress">
+                            <div class="library-progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button class="library-action" onclick="event.stopPropagation(); startLearn(3)">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+
+                <!-- 词库卡片4 -->
+                <div class="library-card" onclick="navigateTo('library-detail.html?id=4')">
+                    <div class="library-icon business">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <div class="library-info">
+                        <div class="library-name">商务英语词汇</div>
+                        <div class="library-meta">
+                            <span class="word-count">1,200词</span>
+                            <span class="progress-text">已学 800</span>
+                        </div>
+                        <div class="library-progress">
+                            <div class="library-progress-bar" style="width: 66.7%"></div>
+                        </div>
+                    </div>
+                    <button class="library-action" onclick="event.stopPropagation(); startLearn(4)">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+
+                <!-- 词库卡片5 -->
+                <div class="library-card" onclick="navigateTo('library-detail.html?id=5')">
+                    <div class="library-icon daily">
+                        <i data-lucide="coffee"></i>
+                    </div>
+                    <div class="library-info">
+                        <div class="library-name">日常生活词汇</div>
+                        <div class="library-meta">
+                            <span class="word-count">800词</span>
+                            <span class="progress-text">已学 650</span>
+                        </div>
+                        <div class="library-progress">
+                            <div class="library-progress-bar" style="width: 81.25%"></div>
+                        </div>
+                    </div>
+                    <button class="library-action" onclick="event.stopPropagation(); startLearn(5)">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+
+                <!-- 词库卡片6 -->
+                <div class="library-card" onclick="navigateTo('library-detail.html?id=6')">
+                    <div class="library-icon custom">
+                        <i data-lucide="star"></i>
+                    </div>
+                    <div class="library-info">
+                        <div class="library-name">我的收藏</div>
+                        <div class="library-meta">
+                            <span class="word-count">85词</span>
+                            <span class="progress-text">自定义</span>
+                        </div>
+                        <div class="library-progress">
+                            <div class="library-progress-bar" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <button class="library-action" onclick="event.stopPropagation(); startLearn(6)">
+                        <i data-lucide="play"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 创建词库按钮 -->
+            <button class="create-library-btn" onclick="navigateTo('library-add.html')">
+                <i data-lucide="plus-circle"></i>
+                <span>创建自定义词库</span>
+            </button>
+        </main>
+
+        <!-- 底部Tabbar -->
+        <nav class="tabbar">
+            <a href="index.html" class="tab-item">
+                <i data-lucide="home"></i>
+                <span>首页</span>
+            </a>
+            <a href="learn.html" class="tab-item">
+                <i data-lucide="book-open"></i>
+                <span>学习</span>
+            </a>
+            <a href="library.html" class="tab-item active">
+                <i data-lucide="library"></i>
+                <span>词库</span>
+            </a>
+            <a href="profile.html" class="tab-item">
+                <i data-lucide="user"></i>
+                <span>我的</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="library.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "tabbar": "/components/tabbar/tabbar",
+    "home-content": "/components/home-content/home-content",
+    "learning-content": "/components/learning-content/learning-content",
+    "vocabulary-content": "/components/vocabulary-content/vocabulary-content",
+    "mine-content": "/components/mine-content/mine-content"
+  }
+}

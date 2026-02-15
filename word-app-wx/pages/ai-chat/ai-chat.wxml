@@ -1,0 +1,21 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="{{title}}" left-arrow placeholder bind:go-back="onBack" />
+  <scroll-view scroll-y class="chat-area" scroll-into-view="msg-{{messages.length - 1}}">
+    <view class="chat-status"><t-icon name="root-list" size="24rpx" /> AI 助手已准备就绪</view>
+    <view wx:for="{{messages}}" wx:key="id" id="msg-{{index}}" class="msg-wrap {{item.type === 'user' ? 'msg-wrap--user' : ''}}">
+      <view wx:if="{{item.type === 'ai'}}" class="msg-avatar"><t-icon name="chat" size="36rpx" /></view>
+      <view class="msg-bubble msg-bubble--{{item.type}}">{{item.content}}</view>
+    </view>
+  </scroll-view>
+  <view class="game-entry">
+    <view class="game-icon"><t-icon name="root-list" size="40rpx" /></view>
+    <view class="game-text"><text class="game-title">单词大挑战</text><text class="game-sub">轻松记单词，赢取积分奖励</text></view>
+    <t-icon name="chevron-right" size="32rpx" />
+  </view>
+  <view class="input-bar">
+    <input class="input-field" placeholder="输入消息..." value="{{inputValue}}" bindinput="onInput" />
+    <view class="send-btn {{inputValue ? 'send-btn--active' : ''}}" bindtap="onSend">
+      <t-icon name="send" size="36rpx" />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,81 @@
+<view class="page-root theme-{{theme}}">
+  <t-navbar title="消息通知" left-arrow placeholder bind:go-back="onBack" />
+  <view class="page-body">
+    <view class="section">
+      <view class="section-head">
+        <view class="dot" />
+        <text class="section-title">推送设置</text>
+      </view>
+      <view class="notify-card">
+        <view class="notify-row">
+          <view class="notify-row-left">
+            <view class="notify-icon notify-icon--blue"><t-icon name="notification" size="36rpx" /></view>
+            <view>
+              <text class="notify-label">每日学习提醒</text>
+              <text class="notify-sub">每天早上 8:00 推送</text>
+            </view>
+          </view>
+          <t-switch value="{{prefs.dailyReminder}}" bind:change="onDailyReminder" />
+        </view>
+        <view class="notify-divider" />
+        <view class="notify-row">
+          <view class="notify-row-left">
+            <view class="notify-icon notify-icon--green"><t-icon name="chat" size="36rpx" /></view>
+            <text class="notify-label">好友消息</text>
+          </view>
+          <t-switch value="{{prefs.friendMessages}}" bind:change="onFriendMessages" />
+        </view>
+        <view class="notify-divider" />
+        <view class="notify-row">
+          <view class="notify-row-left">
+            <view class="notify-icon notify-icon--purple"><t-icon name="user" size="36rpx" /></view>
+            <text class="notify-label">学习小组动态</text>
+          </view>
+          <t-switch value="{{prefs.groupUpdates}}" bind:change="onGroupUpdates" />
+        </view>
+        <view class="notify-divider" />
+        <view class="notify-row">
+          <view class="notify-row-left">
+            <view class="notify-icon notify-icon--orange"><t-icon name="setting" size="36rpx" /></view>
+            <text class="notify-label">系统更新</text>
+          </view>
+          <t-switch value="{{prefs.systemUpdates}}" bind:change="onSystemUpdates" />
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-head">
+        <view class="dot dot--purple" />
+        <text class="section-title">免打扰</text>
+      </view>
+      <view class="notify-card">
+        <view class="notify-row">
+          <view class="notify-row-left">
+            <view class="notify-icon notify-icon--indigo"><t-icon name="time" size="36rpx" /></view>
+            <view>
+              <text class="notify-label">开启免打扰</text>
+              <text class="notify-sub">在指定时间段内静音所有通知</text>
+            </view>
+          </view>
+          <t-switch value="{{prefs.quietHours}}" bind:change="onQuietHours" />
+        </view>
+        <view wx:if="{{prefs.quietHours}}" class="quiet-time-wrap">
+          <view class="quiet-time-row">
+            <text>开始时间</text>
+            <picker mode="time" value="{{prefs.quietFrom}}" bindchange="onQuietFromChange">
+              <text class="quiet-value">{{prefs.quietFrom}}</text>
+            </picker>
+          </view>
+          <view class="quiet-time-row">
+            <text>结束时间</text>
+            <picker mode="time" value="{{prefs.quietTo}}" bindchange="onQuietToChange">
+              <text class="quiet-value">{{prefs.quietTo}}</text>
+            </picker>
+          </view>
+        </view>
+        <view class="quiet-hint">提示：免打扰模式仅影响应用内的推送通知，不会修改系统的通知权限设置。</view>
+      </view>
+    </view>
+  </view>
+</view>

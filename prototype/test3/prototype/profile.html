@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背单词APP - 我的</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- 主内容区 -->
+        <main class="profile-content">
+            <!-- 个人信息卡片 -->
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i data-lucide="user"></i>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">学习达人</div>
+                    <div class="profile-level">
+                        <i data-lucide="award"></i>
+                        <span>Lv.8 词汇大师</span>
+                    </div>
+                </div>
+                <button class="edit-btn" onclick="editProfile()">
+                    <i data-lucide="edit-2"></i>
+                </button>
+            </div>
+
+            <!-- 学习统计 -->
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="book-marked"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">1,250</div>
+                        <div class="stat-label">总词汇量</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">938</div>
+                        <div class="stat-label">已掌握</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="flame"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value">7天</div>
+                        <div class="stat-label">连续打卡</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 功能菜单 -->
+            <div class="menu-section">
+                <div class="menu-title">学习管理</div>
+                <div class="menu-list">
+                    <a href="stats.html" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="bar-chart-3"></i>
+                        </div>
+                        <span>学习统计</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                    <a href="learn.html?mode=review" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="repeat"></i>
+                        </div>
+                        <span>复习计划</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                    <a href="learn.html?mode=wrong" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="alert-circle"></i>
+                        </div>
+                        <span>错题本</span>
+                        <span class="badge">85</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-title">AI功能</div>
+                <div class="menu-list">
+                    <a href="ai-chat.html" class="menu-item">
+                        <div class="menu-icon ai">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <span>AI学习助手</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="mic"></i>
+                        </div>
+                        <span>AI发音纠正</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-title">设置</div>
+                <div class="menu-list">
+                    <a href="settings.html" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="settings"></i>
+                        </div>
+                        <span>学习设置</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="bell"></i>
+                        </div>
+                        <span>提醒设置</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="help-circle"></i>
+                        </div>
+                        <span>帮助与反馈</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon">
+                            <i data-lucide="info"></i>
+                        </div>
+                        <span>关于我们</span>
+                        <i data-lucide="chevron-right" class="menu-arrow"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 退出登录 -->
+            <button class="logout-btn" onclick="logout()">
+                <i data-lucide="log-out"></i>
+                <span>退出登录</span>
+            </button>
+        </main>
+
+        <!-- 底部Tabbar -->
+        <nav class="tabbar">
+            <a href="index.html" class="tab-item">
+                <i data-lucide="home"></i>
+                <span>首页</span>
+            </a>
+            <a href="learn.html" class="tab-item">
+                <i data-lucide="book-open"></i>
+                <span>学习</span>
+            </a>
+            <a href="library.html" class="tab-item">
+                <i data-lucide="library"></i>
+                <span>词库</span>
+            </a>
+            <a href="profile.html" class="tab-item active">
+                <i data-lucide="user"></i>
+                <span>我的</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

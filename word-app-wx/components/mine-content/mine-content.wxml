@@ -1,0 +1,56 @@
+<view class="mine-content">
+  <view class="mine-content__profile-card">
+    <view class="mine-content__settings-btn" bindtap="onSettings">
+      <t-icon name="setting" size="36rpx" />
+    </view>
+    <view class="mine-content__profile-inner">
+      <view class="mine-content__avatar-wrap">
+        <view class="mine-content__avatar">学</view>
+        <view class="mine-content__edit-badge">✎</view>
+      </view>
+      <view class="mine-content__info">
+        <view class="mine-content__name-row">
+          <text class="mine-content__name">{{profile.name}}</text>
+          <t-icon wx:if="{{profile.isVip}}" name="star-filled" size="36rpx" class="mine-content__vip" />
+        </view>
+        <view class="mine-content__tags">
+          <text class="mine-content__tag">LV.{{profile.level}}</text>
+          <text wx:if="{{profile.isVip}}" class="mine-content__tag mine-content__tag--vip">VIP</text>
+        </view>
+        <text class="mine-content__bio">{{profile.bio}}</text>
+      </view>
+    </view>
+    <view class="mine-content__stats">
+      <view class="mine-content__stat">
+        <text class="mine-content__stat-value">{{profile.masteredTotal}}</text>
+        <text class="mine-content__stat-label">累计学习</text>
+      </view>
+      <view class="mine-content__stat">
+        <text class="mine-content__stat-value mine-content__stat-value--primary">{{profile.masteryRate}}%</text>
+        <text class="mine-content__stat-label">掌握率</text>
+      </view>
+      <view class="mine-content__stat">
+        <text class="mine-content__stat-value">{{profile.streakDays}}</text>
+        <text class="mine-content__stat-label">坚持天数</text>
+      </view>
+    </view>
+  </view>
+  <view class="mine-content__quick">
+    <text class="mine-content__quick-title">快捷入口</text>
+    <view wx:for="{{quickItems}}" wx:key="key" class="mine-content__quick-item" data-key="{{item.key}}" bindtap="onQuickTap">
+      <view class="mine-content__quick-icon">
+        <t-icon name="{{item.icon}}" size="44rpx" />
+      </view>
+      <view class="mine-content__quick-text">
+        <text class="mine-content__quick-main">{{item.title}}</text>
+        <text class="mine-content__quick-sub">{{item.sub}}</text>
+      </view>
+      <t-icon name="chevron-right" size="32rpx" class="mine-content__quick-arrow" />
+    </view>
+  </view>
+  <view class="mine-content__theme-row" bindtap="onToggleTheme">
+    <text class="mine-content__theme-label">深色模式</text>
+    <text class="mine-content__theme-value">{{isDark ? '开' : '关'}}</text>
+  </view>
+  <view class="mine-content__version">Version 2.1.0 (Build 20240520)</view>
+</view>
